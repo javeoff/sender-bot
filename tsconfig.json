@@ -1,7 +1,11 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "outDir": "./dist/",
     "rootDir": "src/",
     "noImplicitAny": false
-  }
+  },
+  "include": [
+    "src/**/*.json"
+  ]
 }
