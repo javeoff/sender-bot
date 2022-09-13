@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Stop and remove containers / images / networks
-        uses: ./.github/actions/docker
+        uses: ./.github/actions/ssh-script
         with:
           script: |
             make rm || true
