@@ -13,11 +13,11 @@ export const ormProvider = {
       username: configService.get(ConfigName.DB_USERNAME),
       password: configService.get(ConfigName.DB_PASSWORD),
       database: configService.get(ConfigName.DB_DATABASE),
-      entities: ['src/**/entites/*.{ts,js}'],
-      migrations: ["src/**/migrations/*.{ts,js}"],
-      subscribers: ["src/**/subscribers/*.{ts,js}"],
+      entities: ['src/**/entities/*.{js,ts}'],
+      migrations: ["src/**/migrations/*.{js,ts}"],
+      subscribers: ["src/**/subscribers/*.{js,ts}"],
       synchronize: true,
-      logging: false,
+      logging: true,
     }
 
     const dataSource = new DataSource(config)
@@ -33,7 +33,9 @@ export default new DataSource({
   username: externalConfigService.get(ConfigName.DB_USERNAME),
   password: externalConfigService.get(ConfigName.DB_PASSWORD),
   database: externalConfigService.get(ConfigName.DB_DATABASE),
-  entities: ['src/**/entites/*.{ts,js}'],
+  entities: ['src/**/entities/*.{ts,js}'],
   migrations: ["src/**/migrations/*.{ts,js}"],
   subscribers: ["src/**/subscribers/*.{ts,js}"],
+  synchronize: true,
+  logging: true,
 })

@@ -20,7 +20,8 @@ import { CachePagesService } from './services/CachePagesService';
       isGlobal: true,
       store: redisStore,
 
-      host: 'localhost',
+      host: 'myredis',
+      // host: 'localhost',
       port: 6379,
     }),
   ],

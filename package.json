@@ -2,13 +2,13 @@
   "name": "sender-bot",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/index.js NODE_ENV=production",
+    "start": "ts-node src/index.ts NODE_ENV=production",
     "dev": "node-dev src/index.ts NODE_ENV=development",
     "migration:generate": "ts-node ./node_modules/.bin/typeorm migration:generate ./migrations/ -d ./src/Common/providers/ormProvider.ts",
-    "migration:run": "ts-node ./node_modules/.bin/typeorm migration:run -d ./src/Common/providers/ormProvider.ts"
+    "migration:run": "ts-node ./node_modules/.bin/typeorm migration:run -d ./src/Common/providers/ormProvider.ts",
+    "migration": "npm run migration:generate && npm run migration:run"
   },
   "keywords": [],
   "author": "",

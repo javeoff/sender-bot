@@ -12,13 +12,6 @@
     "resolveJsonModule": true,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
-    "noUncheckedIndexedAccess": true,
-    "incremental": true,
-    "noImplicitOverride": true,
-    "declaration": true,
-    "noImplicitAny": false,
-    "removeComments": true,
-    "noLib": false,
-    "allowSyntheticDefaultImports": true
+    "declaration": true
   },
 }

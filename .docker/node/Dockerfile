@@ -12,7 +12,7 @@ RUN npm run build
 ENV PORT 4200
 EXPOSE $PORT
 
-CMD ["npm", "start"]
+#CMD ["npm", "start"]
 
 
 
