@@ -6,13 +6,6 @@ on:
       - main
 
 jobs:
-#  build:
-#    runs-on: ubuntu-latest
-#    steps:
-#      - name: Install modules
-#        run: npm install
-#      - name: Build entry
-#        run: npm run build
   deploy:
     name: Deploy
     needs: build
