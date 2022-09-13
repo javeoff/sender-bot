@@ -1,0 +1,22 @@
+name: 'Run ssh script'
+description: 'Run ssh script'
+inputs:
+  script:
+    description: 'Script for run'
+    required: true
+  secret-context:
+    description: 'Secret params'
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Run node script
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        script_stop: true
+        script: |
+          ${{inputs.script}}
