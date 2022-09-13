@@ -5,6 +5,8 @@ run:
 		npm start
 create-network:
 	docker network create -d bridge sendbot-network
+rm-network:
+	docker network rm sendbot-network
 migration:
 	docker run --rm \
 		--network=sendbot-network \
