@@ -3,11 +3,15 @@ run:
 		--network=sendbot-network \
 		javeoff/tg-bot-sender \
 		npm start
+create-network:
+	docker network create -d bridge sendbot-network
 migration:
 	docker run --rm \
 		--network=sendbot-network \
 		javeoff/tg-bot-sender \
 		npm run migration
+logs:
+	docker logs tg-bot-sender -f
 run-env:
 	docker run -d --rm --env-file ./.env --name tg-bot-sender javeoff/tg-bot-sender
 stop:
@@ -31,5 +35,3 @@ postgres:
 		postgres \
 		-c shared_buffers=256MB \
 		-c max_connections=200
-logs:
-	docker logs
