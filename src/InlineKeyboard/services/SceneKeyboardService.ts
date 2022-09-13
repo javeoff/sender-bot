@@ -6,10 +6,10 @@ import { CallbackQueryName } from '../../CallbackQuery/enums/CallbackQueryName';
 export class SceneKeyboardService {
   getKeyboard(isExisting: boolean): InlineKeyboardMarkup {
     const firstRow = [
-      {
-        text: "Кастомизировать ★",
-        callback_data: CallbackQueryName.CUSTOMIZE
-      }
+      // {
+      //   text: "Кастомизировать ★",
+      //   callback_data: CallbackQueryName.CUSTOMIZE
+      // }
     ];
 
     if (isExisting) {
