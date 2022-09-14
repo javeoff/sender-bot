@@ -15,6 +15,7 @@ import { CacheModule } from './Cache/CacheModule';
 import { loadDotenv } from './Common/utils/loadDotenv';
 import { CommandsModule } from './Commands/CommandsModule';
 import { InlineKeyboardModule } from './InlineKeyboard/InlineKeyboardModule';
+import { UsersModule } from './Users/UsersModule';
 
 loadDotenv();
 
@@ -26,6 +27,7 @@ loadDotenv();
     }),
     CommonModule,
     SceneModule,
+    UsersModule,
     VideosModule,
     StickersModule,
     ImagesModule,

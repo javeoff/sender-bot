@@ -4,4 +4,5 @@ export enum ProviderName {
   STICKER_REPOSITORY = 'sticker-repository',
   IMAGE_REPOSITORY = 'image-repository',
   VIDEO_REPOSITORY = 'video-repository',
+  USER_REPOSITORY = 'user-repository',
 }

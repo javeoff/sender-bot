@@ -4,7 +4,6 @@ import { imageEntityProvider } from './providers/imageEntityProvider';
 import { ImagesGetter } from './services/ImagesGetter';
 import { ImagesSetter } from './services/ImagesSetter';
 import { EncodingModule } from '../Encoding/EncodingModule';
-import { ImagesSender } from './services/ImagesSender';
 import { CacheModule } from '../Cache/CacheModule';
 
 @Module({
@@ -13,13 +12,11 @@ import { CacheModule } from '../Cache/CacheModule';
     ImagesController,
     ImagesGetter,
     ImagesSetter,
-    ImagesSender,
   ],
   exports: [
     ImagesController,
     ImagesGetter,
     ImagesSetter,
-    ImagesSender,
   ],
   imports: [
     EncodingModule,

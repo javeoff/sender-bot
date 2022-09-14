@@ -5,7 +5,6 @@ import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
 import { StickersGetter } from '../../Stickers/services/StickersGetter';
 import { VideosGetter } from '../../Videos/services/VideosGetter';
 import { ImagesGetter } from '../../Images/services/ImagesGetter';
-import { ImagesSender } from '../../Images/services/ImagesSender';
 import { EditKeyboardService } from '../../InlineKeyboard/services/EditKeyboardService';
 import { CacheCallbackQueryService } from '../../Cache/services/CacheCallbackQueryService';
 
@@ -15,7 +14,6 @@ export class EditCommand {
     private readonly stickersGetter: StickersGetter,
     private readonly videosGetter: VideosGetter,
     private readonly imagesGetter: ImagesGetter,
-    private readonly imagesSender: ImagesSender,
     private readonly editKeyboardService: EditKeyboardService,
     private readonly cacheCallbackQueryService: CacheCallbackQueryService
   ) {}
