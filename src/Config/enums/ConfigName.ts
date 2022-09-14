@@ -9,4 +9,7 @@ export enum ConfigName {
   DB_USERNAME = 'DB_USER',
   DB_PASSWORD = 'DB_PASSWORD',
   DB_DATABASE = 'DB_NAME',
+
+  REDIS_HOST = 'REDIS_HOST',
+  REDIS_PORT = 'REDIS_PORT',
 }
