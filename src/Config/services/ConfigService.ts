@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigName } from '../enums/ConfigName';
-import { loadDotenv } from '../../Common/utils/loadDotenv';
 
 @Injectable()
 export class ConfigService {
@@ -20,7 +19,5 @@ export class ConfigService {
     return this.get(ConfigName.NODE_ENV) === 'development';
   }
 }
-
-loadDotenv();
 
 export const externalConfigService = new ConfigService();
