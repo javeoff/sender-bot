@@ -5,6 +5,9 @@ import { CachePagesService } from './services/CachePagesService';
 import * as redisStore from 'cache-manager-redis-store';
 import { externalConfigService } from '../Config/services/ConfigService';
 import { ConfigName } from '../Config/enums/ConfigName';
+import { loadDotenv } from 'src/Common/utils/loadDotenv';
+
+loadDotenv();
 
 @Module({
   providers: [
