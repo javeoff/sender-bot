@@ -70,6 +70,6 @@ export class RenameCodeScene {
         break;
     }
 
-    ctx.reply('Код успешно изменен\n Ввод: @sendstick_bot ' + text)
+    ctx.reply('Код успешно изменен\n Ввод: @sendbybot ' + text)
   }
 }

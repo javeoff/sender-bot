@@ -34,7 +34,7 @@ export class VideosController {
       const fileLink = await ctx.telegram.getFileLink(video.thumb_id);
       queries.push({
         type: 'video',
-        title: '@sendstick_bot - ' + video.code,
+        title: '@sendbybot - ' + video.code,
         video_file_id: video.video_id,
         thumb_url: fileLink.toString(),
         id: this.encodingService.hash(video.id + video.video_id),
