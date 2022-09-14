@@ -4,6 +4,10 @@ import { loadDotenv } from '../../Common/utils/loadDotenv';
 
 @Injectable()
 export class ConfigService {
+  constructor() {
+    loadDotenv();
+  }
+
   public get<ConfigItem extends ConfigName>(
     name: ConfigItem,
   ): NodeJS.ProcessEnv[ConfigItem] {
@@ -20,7 +24,5 @@ export class ConfigService {
     return this.get(ConfigName.NODE_ENV) === 'development';
   }
 }
-
-loadDotenv();
 
 export const externalConfigService = new ConfigService();
