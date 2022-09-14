@@ -60,10 +60,13 @@ export class SendPhotoScene {
       uniqueFileId,
     );
 
-    ctx.reply(this.sceneLocaleService.getSuccessLoadMediaMessage(
-      'фотографии'
-    ), {
-      reply_markup: this.sceneKeyboardService.getKeyboard(isExisting)
+    ctx.reply(ctx.i18n.t('scenes.success_load_media', {
+      entityName: 'фотографии'
+    }), {
+      reply_markup: this.sceneKeyboardService.getKeyboard(
+        ctx.i18n,
+        isExisting
+      )
     })
   }
 
@@ -92,8 +95,8 @@ export class SendPhotoScene {
 
     await this.imagesSetter.add(image);
 
-    ctx.reply(this.sceneLocaleService.getSuccessSaveMediaMessage(
-      message.text
-    ));
+    ctx.reply(ctx.i18n.t('scenes.success_save_media', {
+      code: message.text
+    }));
   }
 }

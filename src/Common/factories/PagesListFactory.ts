@@ -1,6 +1,10 @@
+import { TContext } from '../types/TContext';
+
 export class PagesListFactory {
+  constructor(private readonly i18n: TContext['i18n']) {}
+
   createReply(rows: string[]): string {
-    let response = 'Список сохраненных медиафайлов:\n';
+    let response = this.i18n.t('commands.list.title') + '\n';
     response += rows.join('\n');
 
     return response;

@@ -1,13 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { InlineKeyboardMarkup } from 'typegram/markup';
 import { CallbackQueryName } from '../../CallbackQuery/enums/CallbackQueryName';
+import { TContext } from '../../Common/types/TContext';
 
 @Injectable()
 export class SceneKeyboardService {
-  getKeyboard(isExisting: boolean): InlineKeyboardMarkup {
+  getKeyboard(i18n: TContext['i18n'], isExisting: boolean): InlineKeyboardMarkup {
     const firstRow = [
       // {
-      //   text: "Кастомизировать ★",
+      //   text: i18n.t('keyboards.scene.customize'),
       //   callback_data: CallbackQueryName.CUSTOMIZE
       // }
     ];
@@ -15,7 +16,7 @@ export class SceneKeyboardService {
     if (isExisting) {
       firstRow.push(
         {
-          text: "Удалить",
+          text: i18n.t('keyboards.scene.delete'),
           callback_data: CallbackQueryName.DELETE
         }
       )
@@ -26,7 +27,7 @@ export class SceneKeyboardService {
     if (isExisting) {
       secondRow.push(
         {
-          text: "Узнать код",
+          text: i18n.t('keyboards.scene.get_code'),
           callback_data: CallbackQueryName.GET_CODE
         }
       );

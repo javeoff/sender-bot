@@ -24,7 +24,7 @@ export class RenameCodeScene {
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
   ) {
-    ctx.reply('Отправь новый код');
+    ctx.reply(ctx.i18n.t('scenes.confirm_code_rename'));
   }
 
   @On('text')
@@ -70,6 +70,8 @@ export class RenameCodeScene {
         break;
     }
 
-    ctx.reply('Код успешно изменен\n Ввод: @sendbybot ' + text)
+    ctx.reply(ctx.i18n.t('scenes.success_code_rename', {
+      code: text
+    }))
   }
 }

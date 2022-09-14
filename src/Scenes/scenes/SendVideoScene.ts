@@ -64,10 +64,13 @@ export class SendVideoScene {
       fileId,
     );
 
-    ctx.reply(this.mediaLocaleService.getSuccessLoadMediaMessage(
-      'видео'
-    ), {
-      reply_markup: this.sceneKeyboardService.getKeyboard(isExisting)
+    ctx.reply(ctx.i18n.t('scenes.success_load_media', {
+      entityName: 'видео'
+    }), {
+      reply_markup: this.sceneKeyboardService.getKeyboard(
+        ctx.i18n,
+        isExisting
+      )
     })
   }
 
@@ -97,8 +100,8 @@ export class SendVideoScene {
 
     await this.videosSetter.add(video);
 
-    ctx.reply(this.mediaLocaleService.getSuccessSaveMediaMessage(
-      message.text
-    ));
+    ctx.reply(ctx.i18n.t('scenes.success_save_media', {
+      code: message.text
+    }));
   }
 }

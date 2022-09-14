@@ -60,7 +60,7 @@ export class PrevPageQuery {
       cache.chatId,
       Number(cache.messageId),
       undefined,
-      new PagesListFactory().createReply(rows),
+      new PagesListFactory(ctx.i18n).createReply(rows),
       {
         reply_markup: this.pagesKeyboardService.getPagesKeyboard(
           hideLeft,

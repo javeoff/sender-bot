@@ -16,6 +16,7 @@ import { loadDotenv } from './Common/utils/loadDotenv';
 import { CommandsModule } from './Commands/CommandsModule';
 import { InlineKeyboardModule } from './InlineKeyboard/InlineKeyboardModule';
 import { UsersModule } from './Users/UsersModule';
+import { i18nMiddleware } from './Locale/middlewares/i18nMiddleware';
 
 loadDotenv();
 
@@ -23,7 +24,7 @@ loadDotenv();
   imports: [
     TelegrafModule.forRoot({
       token: process.env.BOT_TOKEN,
-      middlewares: [sessionMiddleware],
+      middlewares: [sessionMiddleware, i18nMiddleware],
     }),
     CommonModule,
     SceneModule,

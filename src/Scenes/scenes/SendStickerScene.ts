@@ -41,10 +41,13 @@ export class SendStickerScene {
       uniqueStickerId: message.sticker.file_unique_id
     }, { ttl: 10_000 })
 
-    ctx.reply(this.mediaLocaleService.getSuccessLoadMediaMessage(
-      'стикера'
-    ), {
-      reply_markup: this.sceneKeyboardService.getKeyboard(isExisting)
+    ctx.reply(ctx.i18n.t('scenes.success_load_media', {
+      entityName: 'стикера'
+    }), {
+      reply_markup: this.sceneKeyboardService.getKeyboard(
+        ctx.i18n,
+        isExisting
+      )
     })
   }
 
@@ -73,8 +76,8 @@ export class SendStickerScene {
 
     await this.stickersSetter.add(sticker);
 
-    ctx.reply(this.mediaLocaleService.getSuccessSaveMediaMessage(
-      message.text
-    ));
+    ctx.reply(ctx.i18n.t('scenes.success_save_media', {
+      code: message.text
+    }));
   }
 }

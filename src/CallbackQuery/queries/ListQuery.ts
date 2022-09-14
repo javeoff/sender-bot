@@ -1,14 +1,15 @@
 import { Ctx, Sender } from 'nestjs-telegraf';
-import { ListCommandService } from '../../Commands/services/ListCommandService';
 import { CallbackQueryName } from '../enums/CallbackQueryName';
 import { TContext } from '../../Common/types/TContext';
 import { Injectable } from '@nestjs/common';
 import { isQueryWithName } from '../guards/isQueryWithName';
+import { PagesListFactory } from '../../Common/factories/PagesListFactory';
+import { PagesService } from '../services/PagesService';
 
 @Injectable()
 export class ListQuery {
   constructor(
-    private readonly listCommandService: ListCommandService
+    private readonly pagesService: PagesService,
   ) {}
 
   async onListQuery(
@@ -21,8 +22,9 @@ export class ListQuery {
 
     ctx.scene.leave()
 
-    ctx.reply(
-      await this.listCommandService.getResponse(userId)
-    );
+    const factory = new PagesListFactory(ctx.i18n);
+    const {data: rows} = await this.pagesService.getPageRowsByUserId(userId);
+
+    ctx.reply(factory.createReply(rows))
   }
 }

@@ -3,6 +3,7 @@ import { TContext } from './Common/types/TContext';
 import { UsersSetter } from './Users/services/UsersSetter';
 import { UserEntity } from './Users/entities/UserEntity';
 import { UsersGetter } from './Users/services/UsersGetter';
+import { I18n, I18nContext } from 'nestjs-i18n';
 
 @Update()
 export class AppController {
@@ -15,12 +16,8 @@ export class AppController {
   async start(
     @Ctx() ctx: TContext,
   ) {
-    await ctx.replyWithMarkdown(`
-      📦 Добро пожаловать в *BotSender*! 
-    `);
-    await ctx.reply(`
-      Отправь мне любой медиафайл и ты сможешь использовать его в других чатах!
-    `);
+    await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_title'));
+    await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_description'));
 
     const isFirstUser = !await this.usersGetter.has(String(ctx.from.id));
 
@@ -36,7 +33,9 @@ export class AppController {
   }
 
   @Help()
-  async help(@Ctx() ctx: TContext) {
+  async help(
+    @Ctx() ctx: TContext,
+  ) {
     await ctx.reply('Send me a sticker');
   }
 

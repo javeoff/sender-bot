@@ -46,9 +46,9 @@ export class EditCommand {
           variant: 'sticker',
           id: stickerId,
           uniqueStickerId: sticker.unique_sticker_id
-        })
+        }, { ttl: 10_000 })
         ctx.replyWithSticker(stickerId, {
-          reply_markup: this.editKeyboardService.getEditKeyboard()
+          reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n)
         })
         break;
       }
@@ -63,9 +63,9 @@ export class EditCommand {
           variant: 'video',
           id: videoId,
           uniqueVideoId: video.unique_video_id
-        })
+        }, { ttl: 10_000 })
         ctx.replyWithVideo(videoId, {
-          reply_markup: this.editKeyboardService.getEditKeyboard()
+          reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n)
         })
         break;
       }
@@ -80,9 +80,9 @@ export class EditCommand {
           variant: 'image',
           id: photoId,
           uniqueImageId: image.unique_image_id
-        })
+        }, { ttl: 10_000 })
         ctx.replyWithPhoto(photoId, {
-          reply_markup: this.editKeyboardService.getEditKeyboard()
+          reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n)
         })
         break;
       }
