@@ -25,7 +25,6 @@ export class RenameCodeScene {
     @Sender('id') userId: string,
   ) {
     ctx.reply('Отправь новый код');
-    console.log('cococococ');
   }
 
   @On('text')
@@ -34,7 +33,6 @@ export class RenameCodeScene {
     @Message() message: TMessage,
   ) {
     ctx.scene.leave();
-    console.log('dfsdfsdf');
     if (!isMessageWithText(message)) {
       return;
     }
@@ -44,7 +42,9 @@ export class RenameCodeScene {
 
     const cache = await this.cacheCallbackQueryService.get(userId);
 
-    console.log('cache', cache);
+    if (!cache) {
+      return;
+    }
 
     switch(cache.variant) {
       case 'sticker':
