@@ -3,6 +3,8 @@ import { ClickHouseModule } from '@depyronick/nestjs-clickhouse';
 import { ReadActionsService } from './services/ReadActionsService';
 import { ProviderName } from '../Common/enums/ProviderName';
 import { MigrationService } from './services/MigrationsService';
+import { ConfigName } from 'src/Config/enums/ConfigName';
+import { externalConfigService } from '../Config/services/ConfigService';
 
 @Module({
   providers: [
@@ -15,11 +17,11 @@ import { MigrationService } from './services/MigrationsService';
   imports: [
     ClickHouseModule.register([{
       name: ProviderName.ANALYTICS_SERVER,
-      host: 'clickhouse_host',
-      database: 'sendbot',
-      port: 8123,
-      username: 'root',
-      password: 'root',
+      host: externalConfigService.get(ConfigName.CLICKHOUSE_HOST),
+      database: externalConfigService.get(ConfigName.CLICKHOUSE_DB),
+      port: Number(externalConfigService.get(ConfigName.CLICKHOUSE_PORT)),
+      username: externalConfigService.get(ConfigName.CLICKHOUSE_USER),
+      password: externalConfigService.get(ConfigName.CLICKHOUSE_PASSWORD),
     }]),
   ],
 })
