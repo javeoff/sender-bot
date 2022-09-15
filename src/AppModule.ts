@@ -19,9 +19,6 @@ import { i18nMiddleware } from './Locale/middlewares/i18nMiddleware';
 import { AnalyticsModule } from './Analytics/AnalyticsModule';
 import { ConfigService } from './Config/services/ConfigService';
 import { ConfigName } from './Config/enums/ConfigName';
-import { loadDotenv } from './Common/utils/loadDotenv';
-
-loadDotenv();
 
 @Module({
   imports: [

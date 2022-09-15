@@ -2,7 +2,6 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { ProviderName } from '../enums/ProviderName';
 import { ConfigService } from '../../Config/services/ConfigService';
 import { ConfigName } from '../../Config/enums/ConfigName';
-import { loadDotenv } from '../utils/loadDotenv';
 
 export const ormProvider = {
   provide: ProviderName.DATA_SOURCE,
@@ -26,8 +25,6 @@ export const ormProvider = {
   },
   inject: [ConfigService],
 }
-
-loadDotenv();
 
 export default new DataSource({
   type: 'postgres',

@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigName } from '../enums/ConfigName';
-import { loadDotenv } from '../../Common/utils/loadDotenv';
-
-loadDotenv();
 
 @Injectable()
 export class ConfigService {

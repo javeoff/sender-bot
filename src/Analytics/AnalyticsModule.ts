@@ -3,9 +3,6 @@ import { ClickHouseModule } from '@depyronick/nestjs-clickhouse';
 import { ReadActionsService } from './services/ReadActionsService';
 import { ProviderName } from '../Common/enums/ProviderName';
 import { MigrationService } from './services/MigrationsService';
-import { loadDotenv } from '../Common/utils/loadDotenv';
-
-loadDotenv()
 
 @Module({
   providers: [
