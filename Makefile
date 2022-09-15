@@ -34,6 +34,7 @@ postgres:
 		-e PGDATA=/var/lib/postgresql/data/pgdata \
 		-v /Users/daniiljave/.postgres:/var/lib/postgresql/data \
 		--network=sendbot-network \
+		-p 9001:5432 \
 		postgres \
 		-c shared_buffers=256MB \
 		-c max_connections=200
