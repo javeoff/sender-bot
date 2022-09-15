@@ -12,20 +12,29 @@ import { ConfigModule } from './Config/ConfigModule';
 import { EncodingModule } from './Encoding/EncodingModule';
 import { CallbackQueryModule } from './CallbackQuery/CallbackQueryModule';
 import { CacheModule } from './Cache/CacheModule';
-import { loadDotenv } from './Common/utils/loadDotenv';
 import { CommandsModule } from './Commands/CommandsModule';
 import { InlineKeyboardModule } from './InlineKeyboard/InlineKeyboardModule';
 import { UsersModule } from './Users/UsersModule';
 import { i18nMiddleware } from './Locale/middlewares/i18nMiddleware';
+import { AnalyticsModule } from './Analytics/AnalyticsModule';
+import { ConfigService } from './Config/services/ConfigService';
+import { ConfigName } from './Config/enums/ConfigName';
+import { loadDotenv } from './Common/utils/loadDotenv';
 
 loadDotenv();
 
 @Module({
   imports: [
-    TelegrafModule.forRoot({
-      token: process.env.BOT_TOKEN,
-      middlewares: [sessionMiddleware, i18nMiddleware],
+    TelegrafModule.forRootAsync({
+      useFactory: (configService: ConfigService) => {
+        return {
+          token: configService.get(ConfigName.BOT_TOKEN),
+          middlewares: [sessionMiddleware, i18nMiddleware],
+        }
+      },
+      inject: [ConfigService],
     }),
+    AnalyticsModule,
     CommonModule,
     SceneModule,
     UsersModule,

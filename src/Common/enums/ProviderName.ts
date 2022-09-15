@@ -5,4 +5,5 @@ export enum ProviderName {
   IMAGE_REPOSITORY = 'image-repository',
   VIDEO_REPOSITORY = 'video-repository',
   USER_REPOSITORY = 'user-repository',
+  ANALYTICS_SERVER = 'ANALYTICS_SERVER',
 }

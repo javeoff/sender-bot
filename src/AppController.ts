@@ -3,7 +3,6 @@ import { TContext } from './Common/types/TContext';
 import { UsersSetter } from './Users/services/UsersSetter';
 import { UserEntity } from './Users/entities/UserEntity';
 import { UsersGetter } from './Users/services/UsersGetter';
-import { I18n, I18nContext } from 'nestjs-i18n';
 
 @Update()
 export class AppController {

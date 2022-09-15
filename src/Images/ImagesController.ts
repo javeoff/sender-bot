@@ -44,7 +44,7 @@ export class ImagesController {
       return;
     }
 
-    const photo = message.photo[0]
+    const photo = message.photo[0];
 
     await this.cacheCallbackQueryService.set(userId, {
       variant: 'image',

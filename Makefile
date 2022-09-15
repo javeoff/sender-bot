@@ -37,3 +37,12 @@ postgres:
 		postgres \
 		-c shared_buffers=256MB \
 		-c max_connections=200
+clickhouse:
+	docker run -d \
+		--name clickhouse_host \
+		-e CLICKHOUSE_DB=sendbot \
+		-e CLICKHOUSE_USER=root \
+		-e CLICKHOUSE_PASSWORD=root \
+		-p 9000:9000/tcp \
+		-p 18123:8123 \
+		clickhouse/clickhouse-server
