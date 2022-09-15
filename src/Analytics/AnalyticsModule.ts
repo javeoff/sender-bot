@@ -20,11 +20,11 @@ loadDotenv()
   imports: [
     ClickHouseModule.register([{
       name: ProviderName.ANALYTICS_SERVER,
-      host: externalConfigService.get(ConfigName.CLICKHOUSE_HOST),
-      database: externalConfigService.get(ConfigName.CLICKHOUSE_DB),
-      port: Number(externalConfigService.get(ConfigName.CLICKHOUSE_PORT)),
-      username: externalConfigService.get(ConfigName.CLICKHOUSE_USER),
-      password: externalConfigService.get(ConfigName.CLICKHOUSE_PASSWORD),
+      host: 'clickhouse_host',
+      database: 'sendbot',
+      port: 8123,
+      username: 'root',
+      password: 'root',
     }]),
   ],
 })
