@@ -1,1 +1,22 @@
-successCreate: Media files successfully created
+welcome_message_title: "📦 Welcome to the *BotSender*!"
+welcome_message_description: "Send me any media file to use in another chats"
+
+scenes:
+  success_load_media: "Awesome! Send code for ${entityName} to save in database!"
+  success_save_media: "Code saving is success!\nUsage: @sendbybot ${code}"
+  confirm_code_rename: "Send me a new code"
+  success_code_rename: "Code renaming is success\nUsage: @sendbybot ${code}"
+
+keyboards:
+  edit:
+    rename_code: "Change code"
+    delete: "Delete"
+    list: "List of changed data"
+  scene:
+    customize: "Customize ★"
+    delete: "Delete"
+    get_code: "Show code"
+
+commands:
+  list:
+    title: "List of saved media files:"
