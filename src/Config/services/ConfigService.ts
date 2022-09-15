@@ -11,6 +11,7 @@ export class ConfigService {
   public get<ConfigItem extends ConfigName>(
     name: ConfigItem,
   ): NodeJS.ProcessEnv[ConfigItem] {
+    loadDotenv()
     const configParam = process.env[name];
 
     if (!configParam) {
