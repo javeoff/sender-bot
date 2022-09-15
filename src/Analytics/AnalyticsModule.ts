@@ -3,8 +3,8 @@ import { ClickHouseModule } from '@depyronick/nestjs-clickhouse';
 import { ReadActionsService } from './services/ReadActionsService';
 import { ProviderName } from '../Common/enums/ProviderName';
 import { MigrationService } from './services/MigrationsService';
-import { ConfigName } from 'src/Config/enums/ConfigName';
 import { externalConfigService } from '../Config/services/ConfigService';
+import { ConfigName } from '../Config/enums/ConfigName';
 
 @Module({
   providers: [
