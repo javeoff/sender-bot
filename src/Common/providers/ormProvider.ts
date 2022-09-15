@@ -1,6 +1,6 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ProviderName } from '../enums/ProviderName';
-import { ConfigService, externalConfigService } from '../../Config/services/ConfigService';
+import { ConfigService } from '../../Config/services/ConfigService';
 import { ConfigName } from '../../Config/enums/ConfigName';
 import { loadDotenv } from '../utils/loadDotenv';
 
@@ -31,11 +31,11 @@ loadDotenv();
 
 export default new DataSource({
   type: 'postgres',
-  host: externalConfigService.get(ConfigName.DB_HOST),
-  port: Number(externalConfigService.get(ConfigName.DB_PORT)),
-  username: externalConfigService.get(ConfigName.DB_USERNAME),
-  password: externalConfigService.get(ConfigName.DB_PASSWORD),
-  database: externalConfigService.get(ConfigName.DB_DATABASE),
+  host: 'postgres_host',
+  port: 5432,
+  username: 'root',
+  password:'root',
+  database: 'sendbot',
   entities: ['src/**/entities/*.{ts,js}'],
   migrations: ["src/**/migrations/*.{ts,js}"],
   subscribers: ["src/**/subscribers/*.{ts,js}"],
