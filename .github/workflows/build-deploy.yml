@@ -65,3 +65,22 @@ jobs:
         with:
           secrets: ${{ toJson(secrets) }}
           script: make run
+  notification:
+    name: Telegram Notification
+    needs: [deploy]
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Send telegram message
+        uses: appleboy/telegram-action@master
+        env:
+          COMMIT_URL: ${{ github.server_url }}/${{ github.repository }}/commit/${{github.sha}}
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          message: |
+            Build *${{ needs.build.result == 'success' && '✅' || '⛔️' }}* Deploy *${{ needs.deploy.result == 'success' && '✅' || '⛔️' }}*
+            *${{ github.actor }}* created [commit](${{ env.COMMIT_URL }})
+            
+            [Build and deploy](${{ env.COMMIT_URL }}/checks)
