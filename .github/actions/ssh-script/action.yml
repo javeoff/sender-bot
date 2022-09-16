@@ -19,4 +19,5 @@ runs:
         key: ${{ fromJson(inputs.secrets).SSH_PRIVATE_KEY }}
         script_stop: true
         script: |
+          cd ~/sender-bot/
           ${{inputs.script}}
