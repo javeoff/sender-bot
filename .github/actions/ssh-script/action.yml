@@ -4,9 +4,6 @@ inputs:
   script:
     description: 'Script for run'
     required: true
-  secret-context:
-    description: 'Secret params'
-    required: true
 
 runs:
   using: composite
