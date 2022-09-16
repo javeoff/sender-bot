@@ -16,4 +16,7 @@ export class UserEntity {
 
   @Column()
   last_name!: string;
+
+  @Column()
+  username!: string;
 }

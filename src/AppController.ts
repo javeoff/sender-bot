@@ -28,6 +28,7 @@ export class AppController {
     user.first_name = ctx.from?.first_name || '';
     user.last_name = ctx.from?.last_name || '';
     user.user_id = String(ctx.from.id);
+    user.username = ctx.from?.username || '';
     await this.usersSetter.add(user);
   }
 
