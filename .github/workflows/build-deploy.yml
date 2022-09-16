@@ -30,17 +30,17 @@ jobs:
         with:
           secrets: ${{ toJson(secrets) }}
           script: make rm
-      - name: Stop and remove active container
+      - name: Stop and remove Postgres container
         uses: ./.github/actions/ssh-script
         with:
           secrets: ${{ toJson(secrets) }}
           script: make rm-postgres
-      - name: Stop and remove active redis
+      - name: Stop and remove Redis container
         uses: ./.github/actions/ssh-script
         with:
           secrets: ${{ toJson(secrets) }}
           script: make rm-redis
-      - name: Stop and remove active container
+      - name: Stop and remove Clickhouse container
         uses: ./.github/actions/ssh-script
         with:
           secrets: ${{ toJson(secrets) }}

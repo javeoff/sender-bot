@@ -50,7 +50,6 @@ clickhouse:
 		-e CLICKHOUSE_DB=sendbot \
 		-e CLICKHOUSE_USER=root \
 		-e CLICKHOUSE_PASSWORD=root \
-		-v ~/clickhouse/ch_data):/var/lib/clickhouse/ \
 		--network=sendbot-network \
 		-p 9000:9000/tcp \
 		-p 18123:8123 \
