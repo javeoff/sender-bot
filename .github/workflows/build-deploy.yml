@@ -16,7 +16,7 @@ jobs:
       - name: Stop and remove containers / images / networks
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: |
             make rm || true
             make rmi || true
@@ -24,30 +24,30 @@ jobs:
       - name: Create network of Docker registry
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make create-network
       - name: Build docker entry
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make build
       - name: Build docker postgres
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make postgres
       - name: Build docker redis
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make redis
       - name: Create database migration
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make migration
       - name: Run docker entry
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ secrets }}
+          secrets: ${{ fromJson(secrets) }}
           script: make run
