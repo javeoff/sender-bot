@@ -31,14 +31,14 @@ rm-postgres:
 rm-clickhouse:
 	docker rm -f clickhouse_host
 redis:
-	docker run -d -v /Users/daniiljave/.redis:/usr/local/etc/redis --name myredis --network=sendbot-network redis redis-server
+	docker run -d -v ~/.redis:/usr/local/etc/redis --name myredis --network=sendbot-network redis redis-server
 postgres:
 	docker run -d --name postgres_host \
 		-e POSTGRES_USER=root \
 		-e POSTGRES_PASSWORD=root \
 		-e POSTGRES_DB=sendbot \
 		-e PGDATA=/var/lib/postgresql/data/pgdata \
-		-v /Users/daniiljave/.postgres:/var/lib/postgresql/data \
+		-v ~/.postgres:/var/lib/postgresql/data \
 		--network=sendbot-network \
 		-p 9001:5432 \
 		postgres \
@@ -50,6 +50,7 @@ clickhouse:
 		-e CLICKHOUSE_DB=sendbot \
 		-e CLICKHOUSE_USER=root \
 		-e CLICKHOUSE_PASSWORD=root \
+		-v ~/clickhouse/ch_data):/var/lib/clickhouse/ \
 		--network=sendbot-network \
 		-p 9000:9000/tcp \
 		-p 18123:8123 \
