@@ -31,9 +31,14 @@ export class SendPhotoScene {
     }
 
     const [SMALL_PHOTO, MEDIUM_PHOTO, LARGE_PHOTO] = message.photo;
-    const fileId = LARGE_PHOTO.file_id;
-    const uniqueFileId = LARGE_PHOTO.file_unique_id;
-    const caption = message.caption;
+    const fileId = LARGE_PHOTO?.file_id || MEDIUM_PHOTO?.file_id || SMALL_PHOTO?.file_id;
+    const uniqueFileId = LARGE_PHOTO?.file_unique_id || MEDIUM_PHOTO?.file_unique_id || SMALL_PHOTO?.file_unique_id;
+    const caption = message?.caption;
+
+    if (!fileId || uniqueFileId) {
+      ctx.scene.leave();
+      return;
+    }
 
     if (caption) {
       const image = new ImageEntity();

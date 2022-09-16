@@ -43,4 +43,9 @@ export class AppController {
   async hears(@Ctx() ctx: TContext) {
     await ctx.reply('Hey there');
   }
+
+  @Hears(['photoid'])
+  async sendImage(@Ctx() ctx: TContext) {
+    await ctx.replyWithPhoto('AgACAgIAAxkBAAICxWMkfMsMh9Mae4grh9b15lmIVuDPAALTvzEbzdMpSdNJbxxTy0LUAQADAgADeAADKQQ');
+  }
 }
