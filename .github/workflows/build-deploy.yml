@@ -15,6 +15,11 @@ jobs:
         uses: actions/checkout@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull Git updates
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: git pull
       - name: Build docker entry
         uses: ./.github/actions/ssh-script
         with:
