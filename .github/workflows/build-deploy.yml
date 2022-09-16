@@ -11,6 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+          uses: actions/checkout@v2
+          with:
+            token: ${{ secrets.GITHUB_TOKEN }}
+            fetch-depth: 0
       - name: Stop and remove containers / images / networks
         uses: ./.github/actions/ssh-script
         with:
