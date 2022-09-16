@@ -4,6 +4,9 @@ inputs:
   script:
     description: 'Script for run'
     required: true
+  secrets:
+    description: 'Secrets collection'
+    required: true
 
 runs:
   using: composite
