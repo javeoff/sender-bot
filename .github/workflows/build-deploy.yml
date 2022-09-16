@@ -16,17 +16,28 @@ jobs:
       - name: Build docker entry
         uses: ./.github/actions/ssh-script
         with:
-          secrets: ${{ toJson(secrets) }}
+          token: ${{ secrets.GITHUB_TOKEN }}
           script: make build
-      - name: Stop and remove active containers
+      - name: Stop and remove active container
         uses: ./.github/actions/ssh-script
         with:
           secrets: ${{ toJson(secrets) }}
-          script: |
-            make rm
-            make rm-redis
-            make rm-postgres
-            make rm-clickhouse
+          script: make rm
+      - name: Stop and remove active container
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: make rm-postgres
+      - name: Stop and remove active redis
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: make rm-redis
+      - name: Stop and remove active container
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: make rm-clickhouse
       - name: Run Postgres container
         uses: ./.github/actions/ssh-script
         with:
