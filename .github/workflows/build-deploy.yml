@@ -13,10 +13,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Build docker entry
         uses: ./.github/actions/ssh-script
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          secrets: ${{ toJson(secrets) }}
           script: make build
       - name: Stop and remove active container
         uses: ./.github/actions/ssh-script
