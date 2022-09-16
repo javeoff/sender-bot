@@ -13,7 +13,7 @@ migration:
 		javeoff/tg-bot-sender \
 		npm run migration
 logs:
-	docker logs tg-bot-sender -f
+	docker logs -ft tg-bot-sender
 run-env:
 	docker run -d --rm --env-file ./.env --name tg-bot-sender javeoff/tg-bot-sender
 stop:
