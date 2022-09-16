@@ -1,7 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { ProviderName } from '../enums/ProviderName';
-import { ConfigService } from '../../Config/services/ConfigService';
+import { ConfigService, externalConfigService } from '../../Config/services/ConfigService';
 import { ConfigName } from '../../Config/enums/ConfigName';
+import { loadDotenv } from '../utils/loadDotenv';
 
 export const ormProvider = {
   provide: ProviderName.DATA_SOURCE,
@@ -26,13 +27,15 @@ export const ormProvider = {
   inject: [ConfigService],
 }
 
+loadDotenv()
+
 export default new DataSource({
   type: 'postgres',
-  host: 'postgres_host',
-  port: 5432,
-  username: 'root',
-  password:'root',
-  database: 'sendbot',
+  host: externalConfigService.get(ConfigName.DB_HOST),
+  port: Number(externalConfigService.get(ConfigName.DB_PORT)),
+  username: externalConfigService.get(ConfigName.DB_USERNAME),
+  password: externalConfigService.get(ConfigName.CLICKHOUSE_PASSWORD),
+  database: externalConfigService.get(ConfigName.DB_DATABASE),
   entities: ['src/**/entities/*.{ts,js}'],
   migrations: ["src/**/migrations/*.{ts,js}"],
   subscribers: ["src/**/subscribers/*.{ts,js}"],
