@@ -14,9 +14,9 @@ runs:
     - name: Run node script
       uses: appleboy/ssh-action@master
       with:
-        host: ${{ secrets.SSH_HOST }}
-        username: ${{ secrets.SSH_USERNAME }}
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        host: ${{ fromJson(inputs.secrets).SSH_HOST }}
+        username: ${{ fromJson(inputs.secrets).SSH_USERNAME }}
+        key: ${{ fromJson(inputs.secrets).SSH_PRIVATE_KEY }}
         script_stop: true
         script: |
           ${{inputs.script}}
