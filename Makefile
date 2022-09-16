@@ -24,6 +24,12 @@ rmi:
 	docker rmi javeoff/tg-bot-sender -f
 rm:
 	docker rm -f tg-bot-sender
+rm-redis:
+	docker rm -f myredis
+rm-postgres:
+	docker rm -f postgres_host
+rm-clickhouse:
+	docker rm -f clickhouse_host
 redis:
 	docker run -d -v /Users/daniiljave/.redis:/usr/local/etc/redis --name myredis --network=sendbot-network redis redis-server
 postgres:
