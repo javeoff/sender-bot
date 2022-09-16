@@ -13,19 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Stop and remove containers / images / networks
-        uses: ./.github/actions/ssh-script
-        with:
-          secrets: ${{ toJson(secrets) }}
-          script: |
-            make rm || true
-            make rmi || true
-            make rm-network || true
-      - name: Create network of Docker registry
-        uses: ./.github/actions/ssh-script
-        with:
-          secrets: ${{ toJson(secrets) }}
-          script: make create-network
       - name: Build docker entry
         uses: ./.github/actions/ssh-script
         with:
@@ -46,6 +33,11 @@ jobs:
         with:
           secrets: ${{ toJson(secrets) }}
           script: make migration
+      - name: Stop and remove containers / images / networks
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: make rm
       - name: Run docker entry
         uses: ./.github/actions/ssh-script
         with:
