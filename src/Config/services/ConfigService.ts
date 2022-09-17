@@ -2,16 +2,13 @@ import { Injectable } from '@nestjs/common';
 import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
 import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
 
+loadDotenv()
+
 @Injectable()
 export class ConfigService {
-  constructor() {
-    loadDotenv()
-  }
-
   public get<ConfigItem extends ConfigName>(
     name: ConfigItem,
   ): NodeJS.ProcessEnv[ConfigItem] {
-    loadDotenv()
     const configParam = process.env[name];
 
     if (!configParam) {
