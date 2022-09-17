@@ -25,11 +25,6 @@ jobs:
         with:
           secrets: ${{ toJson(secrets) }}
           script: make build
-      - name: Stop and remove active container
-        uses: ./.github/actions/ssh-script
-        with:
-          secrets: ${{ toJson(secrets) }}
-          script: make rm
       - name: Stop and remove Postgres container
         uses: ./.github/actions/ssh-script
         with:
@@ -55,11 +50,20 @@ jobs:
         with:
           secrets: ${{ toJson(secrets) }}
           script: make redis
+      - name: Stop and remove active container
+        uses: ./.github/actions/ssh-script
+        with:
+          secrets: ${{ toJson(secrets) }}
+          script: make rm
       - name: Run docker entry
         uses: ./.github/actions/ssh-script
         with:
           secrets: ${{ toJson(secrets) }}
           script: make run
+      - name: Sleep for wait node start
+        uses: jakejarvis/wait-action@master
+        with:
+          time: '10s'
       - name: Run Clickhouse container
         uses: ./.github/actions/ssh-script
         with:
