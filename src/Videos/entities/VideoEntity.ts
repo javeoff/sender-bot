@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Entity({
@@ -6,20 +7,20 @@ import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 })
 export class VideoEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  public id!: number;
 
   @Column()
-  code!: string;
+  public code!: string;
 
   @Column()
-  video_id!: string;
+  public video_id!: string;
 
   @Column()
-  unique_video_id!: string;
+  public unique_video_id!: string;
 
   @Column()
-  user_id!: string;
+  public user_id!: string;
 
   @Column()
-  thumb_id: string;
+  public thumb_id!: string;
 }

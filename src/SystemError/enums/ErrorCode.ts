@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum ErrorCode {
   ROUTE_NOT_FOUND = 404,
   REST_VALIDATION_ERROR = 422,

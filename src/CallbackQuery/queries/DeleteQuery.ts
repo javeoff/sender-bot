@@ -1,30 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
-import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
-import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
 import { Ctx } from 'nestjs-telegraf';
-import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
-import { TContext } from '@sendByBot/Common/types/TContext';
+
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
 
 @Injectable()
 export class DeleteQuery {
-  constructor(
+  public constructor(
     private readonly stickersSetter: StickersSetter,
     private readonly cacheCallbackQueryService: CacheCallbackQueryService,
     private readonly imagesSetter: ImagesSetter,
     private readonly videosSetter: VideosSetter,
   ) {}
 
-  async onDelete(
-    @Ctx() ctx: TContext,
-  ) {
+  public async onDelete(@Ctx() ctx: TContext): Promise<void> {
     if (!isQueryWithName(ctx, CallbackQueryName.DELETE)) {
       return;
     }
 
-    ctx.scene.leave();
+    void ctx.scene.leave();
 
     const userId = String(ctx.from.id);
     const cache = await this.cacheCallbackQueryService.get(userId);
@@ -35,19 +34,19 @@ export class DeleteQuery {
 
     if ('uniqueStickerId' in cache) {
       this.stickersSetter.removeByUniqueStickerId(cache.uniqueStickerId);
-      ctx.reply('Стикер успешно удален из базы');
+      void ctx.reply('Стикер успешно удален из базы');
       return;
     }
 
     if ('uniqueImageId' in cache) {
       this.imagesSetter.removeByImageUniqueId(cache.uniqueImageId);
-      ctx.reply('Фото успешно удалено из базы');
+      void ctx.reply('Фото успешно удалено из базы');
       return;
     }
 
     if ('uniqueVideoId' in cache) {
       this.videosSetter.removeByVideoUniqueId(cache.uniqueVideoId);
-      ctx.reply('Видео успешно удалено из базы');
+      void ctx.reply('Видео успешно удалено из базы');
       return;
     }
   }

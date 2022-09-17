@@ -1,17 +1,18 @@
-import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { Ctx, Message, On, Scene, SceneEnter } from 'nestjs-telegraf';
+
 import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
-import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
-import { TMessage } from '@sendByBot/Common/types/TMessage';
-import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
-import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
 import { TContext } from '@sendByBot/Common/types/TContext';
-import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
 
 @Scene(SceneName.RENAME_CODE_SCENE)
 export class RenameCodeScene {
-  constructor (
+  public constructor(
     private readonly cacheScenesService: CacheScenesService,
     private readonly cacheCallbackQueryService: CacheCallbackQueryService,
     private readonly stickersSetter: StickersSetter,
@@ -20,19 +21,16 @@ export class RenameCodeScene {
   ) {}
 
   @SceneEnter()
-  public onSceneEnter(
-    @Ctx() ctx: TContext,
-    @Sender('id') userId: string,
-  ) {
-    ctx.reply(ctx.i18n.t('scenes.confirm_code_rename'));
+  public onSceneEnter(@Ctx() ctx: TContext): void {
+    void ctx.reply(ctx.i18n.t('scenes.confirm_code_rename'));
   }
 
   @On('text')
-  async onText(
+  public async onText(
     @Ctx() ctx: TContext,
     @Message() message: TMessage,
-  ) {
-    ctx.scene.leave();
+  ): Promise<void> {
+    void ctx.scene.leave();
     if (!isMessageWithText(message)) {
       return;
     }
@@ -46,32 +44,43 @@ export class RenameCodeScene {
       return;
     }
 
-    switch(cache.variant) {
+    switch (cache.variant) {
       case 'sticker':
-        await this.stickersSetter.change({
-          sticker_id: cache.id
-        }, {
-          code: text
-        })
+        await this.stickersSetter.change(
+          {
+            sticker_id: cache.id,
+          },
+          {
+            code: text,
+          },
+        );
         break;
       case 'video':
-        await this.videosSetter.change({
-          video_id: cache.id
-        }, {
-          code: text
-        })
+        await this.videosSetter.change(
+          {
+            video_id: cache.id,
+          },
+          {
+            code: text,
+          },
+        );
         break;
       case 'image':
-        await this.imagesSetter.change({
-          image_id: cache.id
-        }, {
-          code: text
-        })
+        await this.imagesSetter.change(
+          {
+            image_id: cache.id,
+          },
+          {
+            code: text,
+          },
+        );
         break;
     }
 
-    ctx.reply(ctx.i18n.t('scenes.success_code_rename', {
-      code: text
-    }))
+    void ctx.reply(
+      ctx.i18n.t('scenes.success_code_rename', {
+        code: text,
+      }),
+    );
   }
 }

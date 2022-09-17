@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum ConfigName {
   SECRET_KEY = 'SECRET_KEY',
   NODE_ENV = 'NODE_ENV',

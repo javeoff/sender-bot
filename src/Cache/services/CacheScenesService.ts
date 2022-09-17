@@ -1,20 +1,29 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache, CachingConfig } from 'cache-manager';
+
 import { IScenesCache } from '@sendByBot/Cache/types/IScenesCache';
 
 @Injectable()
 export class CacheScenesService {
   private readonly prefix: string = 'sc';
 
-  constructor(
+  public constructor(
     @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
   ) {}
 
-  get(userId: string): Promise<IScenesCache> {
+  public get(userId: string): Promise<IScenesCache> {
     return this.cacheManager.get<IScenesCache>(this.prefix + userId);
   }
 
-  set(userId: string, data: IScenesCache, options?: CachingConfig): void {
-    void this.cacheManager.set<IScenesCache>(this.prefix + userId, data, options);
+  public set(
+    userId: string,
+    data: IScenesCache,
+    options?: CachingConfig,
+  ): void {
+    void this.cacheManager.set<IScenesCache>(
+      this.prefix + userId,
+      data,
+      options,
+    );
   }
 }

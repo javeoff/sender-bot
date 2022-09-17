@@ -8,7 +8,9 @@
     "dev": "cross-env NODE_ENV=development node-dev src/index.ts",
     "migration:generate": "ts-node ./node_modules/.bin/typeorm migration:generate ./migrations/ -d ./src/Common/providers/ormProvider.ts",
     "migration:run": "ts-node ./node_modules/.bin/typeorm migration:run -d ./src/Common/providers/ormProvider.ts",
-    "migration": "npm run migration:generate && npm run migration:run"
+    "migration": "npm run migration:generate && npm run migration:run",
+    "lint": "eslint \"{**/*,*}.{ts,tsx,js,jsx,json,mdx}\"",
+    "lint:fix": "yarn run lint --fix"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +19,7 @@
     "@types/cache-manager": "^4.0.2",
     "@types/node": "^18.7.18",
     "@types/uuid": "^8.3.4",
+    "eslint-config-jave": "^1.2.0",
     "node-dev": "^7.4.3"
   },
   "dependencies": {
@@ -30,7 +33,7 @@
     "class-validator": "^0.13.2",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.2",
-    "eslint-config-jave": "^1.2.0",
+    "eslint": "8.22.0",
     "nest-winston": "^1.7.0",
     "nestjs-i18n": "^9.1.10",
     "nestjs-telegraf": "^2.6.1",

@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 
@@ -10,23 +11,20 @@ export class VideosSetter {
     private readonly videoRepository: Repository<VideoEntity>,
   ) {}
 
-  removeByVideoId(videoId: string): void {
-    void this.videoRepository.delete({
-      video_id: videoId,
-    })
-  }
-
-  removeByVideoUniqueId(videoId: string): void {
+  public removeByVideoUniqueId(videoId: string): void {
     void this.videoRepository.delete({
       unique_video_id: videoId,
-    })
+    });
   }
 
-  add(item: VideoEntity) {
+  public add(item: VideoEntity): void {
     void this.videoRepository.insert(item);
   }
 
-  change(where: Partial<VideoEntity>, updateValue: Partial<VideoEntity>) {
+  public change(
+    where: Partial<VideoEntity>,
+    updateValue: Partial<VideoEntity>,
+  ): Promise<UpdateResult> {
     return this.videoRepository.update(where, updateValue);
   }
 }

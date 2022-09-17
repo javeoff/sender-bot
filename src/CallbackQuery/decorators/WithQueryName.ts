@@ -1,6 +1,7 @@
 import { createParamDecorator } from '@nestjs/common';
-import { TContext } from '@sendByBot/Common/types/TContext';
+
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 export const WithQueryName = createParamDecorator(
   (name: CallbackQueryName, ctx: TContext) => {
@@ -9,5 +10,5 @@ export const WithQueryName = createParamDecorator(
     }
 
     return ctx;
-  }
-)
+  },
+);

@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Entity({
@@ -6,17 +7,17 @@ import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 })
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  public id!: number;
 
   @Column()
-  user_id!: string;
+  public user_id!: string;
 
   @Column()
-  first_name!: string;
+  public first_name!: string;
 
   @Column()
-  last_name!: string;
+  public last_name!: string;
 
   @Column()
-  username!: string;
+  public username!: string;
 }

@@ -1,19 +1,20 @@
-import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
-import { RenameCodeQuery } from '@sendByBot/CallbackQuery/queries/RenameCodeQuery';
-import { CallbackQueryController } from '@sendByBot/CallbackQuery/CallbackQueryController';
-import { GetCodeQuery } from '@sendByBot/CallbackQuery/queries/GetCodeQuery';
-import { CommonModule } from '@sendByBot/Common/CommonModule';
-import { StickersModule } from '@sendByBot/Stickers/StickersModule';
-import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
-import { VideosModule } from '@sendByBot/Videos/VideosModule';
-import { PrevPageQuery } from '@sendByBot/CallbackQuery/queries/PrevPageQuery';
-import { CommandsModule } from '@sendByBot/Commands/CommandsModule';
-import { DeleteQuery } from '@sendByBot/CallbackQuery/queries/DeleteQuery';
 import { forwardRef, Module } from '@nestjs/common';
-import { ImagesModule } from '@sendByBot/Images/ImagesModule';
+
+import { CacheModule } from '@sendByBot/Cache/CacheModule';
+import { CallbackQueryController } from '@sendByBot/CallbackQuery/CallbackQueryController';
+import { DeleteQuery } from '@sendByBot/CallbackQuery/queries/DeleteQuery';
+import { GetCodeQuery } from '@sendByBot/CallbackQuery/queries/GetCodeQuery';
 import { ListQuery } from '@sendByBot/CallbackQuery/queries/ListQuery';
 import { NextPageQuery } from '@sendByBot/CallbackQuery/queries/NextPageQuery';
-import { CacheModule } from '@sendByBot/Cache/CacheModule';
+import { PrevPageQuery } from '@sendByBot/CallbackQuery/queries/PrevPageQuery';
+import { RenameCodeQuery } from '@sendByBot/CallbackQuery/queries/RenameCodeQuery';
+import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { CommandsModule } from '@sendByBot/Commands/CommandsModule';
+import { CommonModule } from '@sendByBot/Common/CommonModule';
+import { ImagesModule } from '@sendByBot/Images/ImagesModule';
+import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
+import { StickersModule } from '@sendByBot/Stickers/StickersModule';
+import { VideosModule } from '@sendByBot/Videos/VideosModule';
 
 @Module({
   providers: [
@@ -26,9 +27,7 @@ import { CacheModule } from '@sendByBot/Cache/CacheModule';
     PagesService,
     CallbackQueryController,
   ],
-  exports: [
-    PagesService
-  ],
+  exports: [PagesService],
   imports: [
     StickersModule,
     VideosModule,

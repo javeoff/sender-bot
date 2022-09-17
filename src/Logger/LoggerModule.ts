@@ -1,7 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 import { WinstonModule } from 'nest-winston';
-import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
+
 import { WinstonOptionsFactory } from '@sendByBot/Logger/factories/WinstonOptionsFactory';
+import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
 
 @Global()
 @Module({
@@ -13,6 +14,6 @@ import { WinstonOptionsFactory } from '@sendByBot/Logger/factories/WinstonOption
       useFactory: (optionsFactory: WinstonOptionsFactory) =>
         optionsFactory.create(),
     }),
-  ]
+  ],
 })
 export class LoggerModule {}

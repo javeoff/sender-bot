@@ -1,23 +1,22 @@
 import { Ctx, Message, On, Sender, Update } from 'nestjs-telegraf';
-import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+
 import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
-import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { TContext } from '@sendByBot/Common/types/TContext';
 import { TMessage } from '@sendByBot/Common/types/TMessage';
 import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
-import { TContext } from '@sendByBot/Common/types/TContext';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { TQueries } from '@sendByBot/Videos/types/TQueries';
 
 @Update()
 export class VideosController {
-  constructor(
+  public constructor(
     private readonly videosGetter: VideosGetter,
     private readonly encodingService: EncodingService,
     private readonly cacheCallbackQueryService: CacheCallbackQueryService,
-  ) {
-  }
+  ) {}
 
-  async onInlineQuery(
-    @Ctx() ctx: TContext
-  ) {
+  public async onInlineQuery(@Ctx() ctx: TContext): Promise<TQueries> {
     const query = ctx.inlineQuery.query;
     const videos = await this.videosGetter.getByCode(
       String(ctx.from.id),
@@ -28,39 +27,44 @@ export class VideosController {
       return [];
     }
 
-    const queries: Record<string, unknown>[] = [];
+    const queries: TQueries = [];
 
-    for (let video of videos) {
+    for (const video of videos) {
       const fileLink = await ctx.telegram.getFileLink(video.thumb_id);
+
       queries.push({
         type: 'video',
         title: '@sendbybot - ' + video.code,
         video_file_id: video.video_id,
         thumb_url: fileLink.toString(),
         id: this.encodingService.hash(video.id + video.video_id),
-      })
+      });
     }
 
     return queries;
   }
 
   @On('video')
-  async onVideo(
+  public async onVideo(
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
     @Message() message: TMessage,
-  ) {
+  ): Promise<void> {
     if (!('video' in message)) {
       return;
     }
 
-    const video = message.video
+    const video = message.video;
 
-    await this.cacheCallbackQueryService.set(userId, {
-      variant: 'video',
-      id: video.file_id,
-      uniqueVideoId: video.file_unique_id
-    }, { ttl: 10_000 });
+    await this.cacheCallbackQueryService.set(
+      userId,
+      {
+        variant: 'video',
+        id: video.file_id,
+        uniqueVideoId: video.file_unique_id,
+      },
+      { ttl: 10_000 },
+    );
     void ctx.scene.enter(SceneName.SEND_VIDEO_SCENE);
   }
 }

@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Equal, ILike, Repository } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 
@@ -10,34 +11,36 @@ export class VideosGetter {
     private readonly videoRepository: Repository<VideoEntity>,
   ) {}
 
-  getById(userId: string, id: string): Promise<VideoEntity[]> {
+  public getById(userId: string, id: string): Promise<VideoEntity[]> {
     return this.videoRepository.findBy({
       user_id: Equal(userId),
       id: Equal(Number(id)),
     });
   }
 
-  getByCode(userId: string, code: string): Promise<VideoEntity[]> {
+  public getByCode(userId: string, code: string): Promise<VideoEntity[]> {
     return this.videoRepository.findBy({
       user_id: Equal(userId),
       code: ILike(`${code}%`),
     });
   }
 
-  getByUniqueId(userId: string, uniqueVideoId: string): Promise<VideoEntity[]> {
+  public getByUniqueId(
+    userId: string,
+    uniqueVideoId: string,
+  ): Promise<VideoEntity[]> {
     return this.videoRepository.findBy({
       user_id: Equal(userId),
       unique_video_id: Equal(uniqueVideoId),
     });
   }
 
-  async hasByUniqueId(userId: string, uniqueVideoId: string): Promise<boolean> {
-    return (await this.getByUniqueId(userId, uniqueVideoId))?.length > 0;
-  }
+  public async hasByUniqueId(
+    userId: string,
+    uniqueVideoId: string,
+  ): Promise<boolean> {
+    const result = await this.getByUniqueId(userId, uniqueVideoId);
 
-  getAll(userId: string): Promise<VideoEntity[]> {
-    return this.videoRepository.findBy({
-      user_id: Equal(userId),
-    });
+    return result?.length > 0;
   }
 }

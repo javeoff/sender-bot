@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum ProviderName {
   DATA_SOURCE = 'data-source',
   CONFIG = 'config',

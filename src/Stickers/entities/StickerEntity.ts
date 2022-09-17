@@ -1,4 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Entity({
@@ -6,17 +7,17 @@ import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 })
 export class StickerEntity {
   @PrimaryGeneratedColumn()
-  id!: number;
+  public id!: number;
 
   @Column()
-  code!: string;
+  public code!: string;
 
   @Column()
-  sticker_id!: string;
+  public sticker_id!: string;
 
   @Column()
-  unique_sticker_id!: string;
+  public unique_sticker_id!: string;
 
   @Column()
-  user_id!: string;
+  public user_id!: string;
 }

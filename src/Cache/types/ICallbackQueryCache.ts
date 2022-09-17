@@ -17,6 +17,7 @@ interface ICallbackQueryVideoCache extends IBaseCallbackQueryCache {
   uniqueVideoId: string;
 }
 
-export type ICallbackQueryCache = ICallbackQueryStickerCache
+export type ICallbackQueryCache =
+  | ICallbackQueryStickerCache
   | ICallbackQueryImageCache
   | ICallbackQueryVideoCache;

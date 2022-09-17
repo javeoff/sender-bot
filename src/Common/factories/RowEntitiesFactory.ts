@@ -4,37 +4,31 @@ interface IPartialEntity {
 }
 
 export class RowEntitiesFactory {
-  entitiesRows: string[] = [];
+  private entitiesRows: string[] = [];
 
-  public addStickerEntities(newEntities: IPartialEntity[]) {
+  public addStickerEntities(newEntities: IPartialEntity[]): void {
     newEntities.map((entity) => {
-      this.entitiesRows.push(
-        this.createRow(entity, 'edit_sticker')
-      );
-    })
+      this.entitiesRows.push(this.createRow(entity, 'edit_sticker'));
+    });
   }
 
-  public addImagesEntities(newEntities: IPartialEntity[]) {
+  public addImagesEntities(newEntities: IPartialEntity[]): void {
     newEntities.map((entity) => {
-      this.entitiesRows.push(
-        this.createRow(entity, 'edit_image')
-      );
-    })
+      this.entitiesRows.push(this.createRow(entity, 'edit_image'));
+    });
   }
 
-  public addVideosEntities(newEntities: IPartialEntity[]) {
+  public addVideosEntities(newEntities: IPartialEntity[]): void {
     newEntities.map((entity) => {
-      this.entitiesRows.push(
-        this.createRow(entity, 'edit_video')
-      );
-    })
+      this.entitiesRows.push(this.createRow(entity, 'edit_video'));
+    });
   }
 
   public get rows(): string[] {
     return this.entitiesRows;
   }
 
-  private createRow(entity: IPartialEntity, prefix: string) {
-    return `/${prefix}_${entity.id} - ${entity.code}`
+  private createRow(entity: IPartialEntity, prefix: string): string {
+    return `/${prefix}_${entity.id} - ${entity.code}`;
   }
 }

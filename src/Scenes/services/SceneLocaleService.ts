@@ -4,7 +4,6 @@ export class SceneLocaleService {
   }
 
   public getSuccessSaveMediaMessage(code: string): string {
-    return 'Код успешно сохранен!\n' +
-    `Ввод: @sendbybot ${code}`;
+    return 'Код успешно сохранен!\n' + `Ввод: @sendbybot ${code}`;
   }
 }

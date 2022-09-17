@@ -1,12 +1,16 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
-import { ConfigService, externalConfigService } from '@sendByBot/Config/services/ConfigService';
-import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
 import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import {
+  ConfigService,
+  externalConfigService,
+} from '@sendByBot/Config/services/ConfigService';
 
 export const ormProvider = {
   provide: ProviderName.DATA_SOURCE,
-  useFactory: (configService: ConfigService) => {
+  useFactory: (configService: ConfigService): Promise<DataSource> => {
     const config: DataSourceOptions = {
       type: 'postgres',
       host: configService.get(ConfigName.DB_HOST),
@@ -15,19 +19,20 @@ export const ormProvider = {
       password: configService.get(ConfigName.DB_PASSWORD),
       database: configService.get(ConfigName.DB_DATABASE),
       entities: ['src/**/entities/*.{js,ts}'],
-      migrations: ["src/**/migrations/*.{js,ts}"],
-      subscribers: ["src/**/subscribers/*.{js,ts}"],
+      migrations: ['src/**/migrations/*.{js,ts}'],
+      subscribers: ['src/**/subscribers/*.{js,ts}'],
       synchronize: true,
       logging: false,
-    }
+    };
 
-    const dataSource = new DataSource(config)
-    return dataSource.initialize()
+    const dataSource = new DataSource(config);
+
+    return dataSource.initialize();
   },
   inject: [ConfigService],
-}
+};
 
-loadDotenv()
+loadDotenv();
 
 export default new DataSource({
   type: 'postgres',
@@ -37,8 +42,8 @@ export default new DataSource({
   password: externalConfigService.get(ConfigName.CLICKHOUSE_PASSWORD),
   database: externalConfigService.get(ConfigName.DB_DATABASE),
   entities: ['src/**/entities/*.{ts,js}'],
-  migrations: ["src/**/migrations/*.{ts,js}"],
-  subscribers: ["src/**/subscribers/*.{ts,js}"],
+  migrations: ['src/**/migrations/*.{ts,js}'],
+  subscribers: ['src/**/subscribers/*.{ts,js}'],
   synchronize: true,
   logging: false,
-})
+});
