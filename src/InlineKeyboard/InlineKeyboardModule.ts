@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { SceneKeyboardService } from './services/SceneKeyboardService';
-import { EditKeyboardService } from './services/EditKeyboardService';
-import { PagesKeyboardService } from './services/PagesKeyboardService';
+import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { EditKeyboardService } from '@sendByBot/InlineKeyboard/services/EditKeyboardService';
+import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
 
 @Module({
   providers: [

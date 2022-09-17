@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { ErrorCode } from '../enums/ErrorCode';
-import { SystemError } from '../dto/SystemError';
+import { SystemError } from '@sendByBot/SystemError/dto/SystemError';
+import { ErrorCode } from '@sendByBot/SystemError/enums/ErrorCode';
 
 @Injectable()
 export class SystemErrorFactory {

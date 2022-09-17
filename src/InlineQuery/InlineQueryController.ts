@@ -1,11 +1,11 @@
 import { Ctx, On, Update } from 'nestjs-telegraf';
-import { ImagesController } from '../Images/ImagesController';
-import { StickersController } from '../Stickers/StickersController';
-import { VideosController } from '../Videos/VideosController';
-import { TContext } from '../Common/types/TContext';
-import { ReadActionsService } from '../Analytics/services/ReadActionsService';
-import { TReadActionType } from '../Analytics/types/TReadActionType';
-import { IReadAction } from '../Analytics/types/IReadAction';
+import { StickersController } from '@sendByBot/Stickers/StickersController';
+import { VideosController } from '@sendByBot/Videos/VideosController';
+import { IReadAction } from '@sendByBot/Analytics/types/IReadAction';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { TReadActionType } from '@sendByBot/Analytics/types/TReadActionType';
+import { ReadActionsService } from '@sendByBot/Analytics/services/ReadActionsService';
+import { ImagesController } from '@sendByBot/Images/ImagesController';
 
 @Update()
 export class InlineQueryController {

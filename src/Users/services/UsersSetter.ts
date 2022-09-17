@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { InsertResult, Repository } from 'typeorm';
-import { UserEntity } from '../entities/UserEntity';
-import { ProviderName } from '../../Common/enums/ProviderName';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { UserEntity } from '@sendByBot/Users/entities/UserEntity';
 
 @Injectable()
 export class UsersSetter {

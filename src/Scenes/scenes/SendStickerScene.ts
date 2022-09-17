@@ -1,14 +1,14 @@
 import { SceneName } from '../enums/SceneName';
 import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { SceneLocaleService } from '../services/SceneLocaleService';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
-import { TMessage } from '../../Common/types/TMessage';
-import { StickerEntity } from '../../Stickers/entities/StickerEntity';
-import { StickersSetter } from '../../Stickers/services/StickersSetter';
-import { CacheScenesService } from '../../Cache/services/CacheScenesService';
-import { SceneKeyboardService } from '../../InlineKeyboard/services/SceneKeyboardService';
-import { StickersGetter } from '../../Stickers/services/StickersGetter';
+import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
+import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 
 @Scene(SceneName.SEND_STICKER_SCENE)
 export class SendStickerScene {

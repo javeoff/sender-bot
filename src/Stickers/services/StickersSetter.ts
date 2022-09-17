@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { Repository } from 'typeorm';
-import { StickerEntity } from '../entities/StickerEntity';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 
 @Injectable()
 export class StickersSetter {

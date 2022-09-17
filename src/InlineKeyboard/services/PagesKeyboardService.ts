@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InlineKeyboardMarkup } from 'typegram/markup';
-import { CallbackQueryName } from '../../CallbackQuery/enums/CallbackQueryName';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 
 @Injectable()
 export class PagesKeyboardService {

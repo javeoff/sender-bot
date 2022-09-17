@@ -1,10 +1,10 @@
 import { CacheModule as NestCacheModule, Module } from '@nestjs/common';
-import { CacheCallbackQueryService } from './services/CacheCallbackQueryService';
-import { CacheScenesService } from './services/CacheScenesService';
-import { CachePagesService } from './services/CachePagesService';
-import * as redisStore from 'cache-manager-redis-store';
-import { ConfigService } from '../Config/services/ConfigService';
-import { ConfigName } from '../Config/enums/ConfigName';
+import { ConfigService } from '@sendByBot/Config/services/ConfigService';
+import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
+import redisStore from 'cache-manager-redis-store';
 
 @Module({
   providers: [

@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
 import { Ctx } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { isQueryWithName } from '../guards/isQueryWithName';
-import { CallbackQueryName } from '../enums/CallbackQueryName';
-import { SceneName } from '../../Scenes/enums/SceneName';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 
 @Injectable()
 export class RenameCodeQuery {

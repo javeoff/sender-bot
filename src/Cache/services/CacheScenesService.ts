@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache, CachingConfig } from 'cache-manager';
-import { IScenesCache } from '../types/IScenesCache';
+import { IScenesCache } from '@sendByBot/Cache/types/IScenesCache';
 
 @Injectable()
 export class CacheScenesService {

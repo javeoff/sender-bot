@@ -1,5 +1,5 @@
-import { BotExceptionFilter } from './filters/BotExceptionFilter';
 import { Module } from '@nestjs/common';
+import { BotExceptionFilter } from '@sendByBot/Error/filters/BotExceptionFilter';
 
 @Module({
   providers: [BotExceptionFilter],

@@ -1,8 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { ProviderName } from '../enums/ProviderName';
-import { ConfigService, externalConfigService } from '../../Config/services/ConfigService';
-import { ConfigName } from '../../Config/enums/ConfigName';
-import { loadDotenv } from '../utils/loadDotenv';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { ConfigService, externalConfigService } from '@sendByBot/Config/services/ConfigService';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
 
 export const ormProvider = {
   provide: ProviderName.DATA_SOURCE,
@@ -18,7 +18,7 @@ export const ormProvider = {
       migrations: ["src/**/migrations/*.{js,ts}"],
       subscribers: ["src/**/subscribers/*.{js,ts}"],
       synchronize: true,
-      logging: true,
+      logging: false,
     }
 
     const dataSource = new DataSource(config)
@@ -40,5 +40,5 @@ export default new DataSource({
   migrations: ["src/**/migrations/*.{ts,js}"],
   subscribers: ["src/**/subscribers/*.{ts,js}"],
   synchronize: true,
-  logging: true,
+  logging: false,
 })

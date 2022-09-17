@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RowEntitiesFactory } from '../../Common/factories/RowEntitiesFactory';
-import { ListBuilder } from '../../Common/builders/ListBuilder';
+import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
+import { ListBuilder } from '@sendByBot/Common/builders/ListBuilder';
 
 @Injectable()
 export class PagesService {

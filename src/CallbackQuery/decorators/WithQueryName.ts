@@ -1,6 +1,6 @@
-import { CallbackQueryName } from '../enums/CallbackQueryName';
-import { TContext } from '../../Common/types/TContext';
 import { createParamDecorator } from '@nestjs/common';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 
 export const WithQueryName = createParamDecorator(
   (name: CallbackQueryName, ctx: TContext) => {

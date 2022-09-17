@@ -1,10 +1,10 @@
 import { Ctx, Message, On, Sender, Update } from 'nestjs-telegraf';
-import { TContext } from '../Common/types/TContext';
-import { SceneName } from '../Scenes/enums/SceneName';
-import { VideosGetter } from './services/VideosGetter';
-import { EncodingService } from '../Encoding/services/EncodingService';
-import { TMessage } from '../Common/types/TMessage';
-import { CacheCallbackQueryService } from '../Cache/services/CacheCallbackQueryService';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Update()
 export class VideosController {

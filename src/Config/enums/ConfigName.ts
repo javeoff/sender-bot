@@ -2,6 +2,7 @@ export enum ConfigName {
   SECRET_KEY = 'SECRET_KEY',
   NODE_ENV = 'NODE_ENV',
   BOT_TOKEN = 'BOT_TOKEN',
+  EVENTS_CHANNEL_ID = 'EVENTS_CHANNEL_ID',
 
   DB_TYPE = 'DB_TYPE',
   DB_HOST = 'DB_HOST',

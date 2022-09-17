@@ -1,12 +1,12 @@
+import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
+import { ListCommand } from '@sendByBot/Commands/controllers/ListCommand';
+import { CallbackQueryModule } from '@sendByBot/CallbackQuery/CallbackQueryModule';
+import { StickersModule } from '@sendByBot/Stickers/StickersModule';
 import { forwardRef, Module } from '@nestjs/common';
-import { ListCommand } from './controllers/ListCommand';
-import { StickersModule } from '../Stickers/StickersModule';
-import { ImagesModule } from '../Images/ImagesModule';
-import { VideosModule } from '../Videos/VideosModule';
-import { EditCommand } from './controllers/EditCommand';
-import { InlineKeyboardModule } from '../InlineKeyboard/InlineKeyboardModule';
-import { CacheModule } from '../Cache/CacheModule';
-import { CallbackQueryModule } from '../CallbackQuery/CallbackQueryModule';
+import { ImagesModule } from '@sendByBot/Images/ImagesModule';
+import { EditCommand } from '@sendByBot/Commands/controllers/EditCommand';
+import { VideosModule } from '@sendByBot/Videos/VideosModule';
+import { CacheModule } from '@sendByBot/Cache/CacheModule';
 
 @Module({
   providers: [

@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProviderName } from '../enums/ProviderName';
 import { DataSource } from 'typeorm';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Injectable()
 export class ListBuilder {

@@ -1,12 +1,12 @@
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
 import { Ctx, Message, On, Sender, Update } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { TMessage } from '../../Common/types/TMessage';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
-import { StickersGetter } from '../../Stickers/services/StickersGetter';
-import { VideosGetter } from '../../Videos/services/VideosGetter';
-import { ImagesGetter } from '../../Images/services/ImagesGetter';
-import { EditKeyboardService } from '../../InlineKeyboard/services/EditKeyboardService';
-import { CacheCallbackQueryService } from '../../Cache/services/CacheCallbackQueryService';
+import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { EditKeyboardService } from '@sendByBot/InlineKeyboard/services/EditKeyboardService';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
 
 @Update()
 export class EditCommand {

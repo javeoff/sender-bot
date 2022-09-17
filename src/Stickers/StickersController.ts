@@ -1,10 +1,10 @@
 import { Ctx, Message, On, Sender, Update } from 'nestjs-telegraf';
-import { TContext } from '../Common/types/TContext';
-import { StickersGetter } from './services/StickersGetter';
-import { SceneName } from '../Scenes/enums/SceneName';
-import { EncodingService } from '../Encoding/services/EncodingService';
-import { CacheCallbackQueryService } from '../Cache/services/CacheCallbackQueryService';
-import { TMessage } from '../Common/types/TMessage';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
+import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Update()
 export class StickersController {

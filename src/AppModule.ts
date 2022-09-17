@@ -1,26 +1,27 @@
 import { Module } from '@nestjs/common';
+import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
+import { UsersModule } from '@sendByBot/Users/UsersModule';
+import { InlineQueryModule } from '@sendByBot/InlineQuery/InlineQueryModule';
+import { ConfigModule } from '@sendByBot/Config/ConfigModule';
+import { AppController } from '@sendByBot/AppController';
+import { CommonModule } from '@sendByBot/Common/CommonModule';
+import { StickersModule } from '@sendByBot/Stickers/StickersModule';
+import { SceneModule } from '@sendByBot/Scenes/SceneModule';
 import { TelegrafModule } from 'nestjs-telegraf';
-import { AppController } from './AppController';
-import { SceneModule } from './Scenes/SceneModule';
-import { sessionMiddleware } from './Common/middlewares/sessionMiddleware';
-import { StickersModule } from './Stickers/StickersModule';
-import { VideosModule } from './Videos/VideosModule';
-import { ImagesModule } from './Images/ImagesModule';
-import { InlineQueryModule } from './InlineQuery/InlineQueryModule';
-import { CommonModule } from './Common/CommonModule';
-import { ConfigModule } from './Config/ConfigModule';
-import { EncodingModule } from './Encoding/EncodingModule';
-import { CallbackQueryModule } from './CallbackQuery/CallbackQueryModule';
-import { CacheModule } from './Cache/CacheModule';
-import { CommandsModule } from './Commands/CommandsModule';
-import { InlineKeyboardModule } from './InlineKeyboard/InlineKeyboardModule';
-import { UsersModule } from './Users/UsersModule';
-import { i18nMiddleware } from './Locale/middlewares/i18nMiddleware';
-import { AnalyticsModule } from './Analytics/AnalyticsModule';
-import { ConfigService } from './Config/services/ConfigService';
-import { ConfigName } from './Config/enums/ConfigName';
-import { SystemErrorModule } from './SystemError/SystemErrorModule';
-import { ErrorModule } from './Error/ErrorModule';
+import { AnalyticsModule } from '@sendByBot/Analytics/AnalyticsModule';
+import { VideosModule } from '@sendByBot/Videos/VideosModule';
+import { SystemErrorModule } from '@sendByBot/SystemError/SystemErrorModule';
+import { ConfigService } from '@sendByBot/Config/services/ConfigService';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import { CallbackQueryModule } from '@sendByBot/CallbackQuery/CallbackQueryModule';
+import { EncodingModule } from '@sendByBot/Encoding/EncodingModule';
+import { CommandsModule } from '@sendByBot/Commands/CommandsModule';
+import { i18nMiddleware } from '@sendByBot/Locale/middlewares/i18nMiddleware';
+import { ImagesModule } from '@sendByBot/Images/ImagesModule';
+import { sessionMiddleware } from '@sendByBot/Common/middlewares/sessionMiddleware';
+import { ErrorModule } from '@sendByBot/Error/ErrorModule';
+import { CacheModule } from '@sendByBot/Cache/CacheModule';
+import { LoggerModule } from '@sendByBot/Logger/LoggerModule';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { ErrorModule } from './Error/ErrorModule';
       },
       inject: [ConfigService],
     }),
+    LoggerModule,
     AnalyticsModule,
     CommonModule,
     SceneModule,
