@@ -1,14 +1,14 @@
 import { SceneName } from '../enums/SceneName';
 import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { SceneLocaleService } from '../services/SceneLocaleService';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
-import { TMessage } from '../../Common/types/TMessage';
-import { VideoEntity } from '../../Videos/entities/VideoEntity';
-import { VideosSetter } from '../../Videos/services/VideosSetter';
-import { CacheScenesService } from '../../Cache/services/CacheScenesService';
-import { VideosGetter } from '../../Videos/services/VideosGetter';
-import { SceneKeyboardService } from '../../InlineKeyboard/services/SceneKeyboardService';
+import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 
 @Scene(SceneName.SEND_VIDEO_SCENE)
 export class SendVideoScene {

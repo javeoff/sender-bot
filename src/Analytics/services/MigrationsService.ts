@@ -1,6 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { ClickHouseClient } from '@depyronick/nestjs-clickhouse';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Injectable()
 export class MigrationService {

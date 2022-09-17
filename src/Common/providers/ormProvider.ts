@@ -1,8 +1,8 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
-import { ProviderName } from '../enums/ProviderName';
-import { ConfigService, externalConfigService } from '../../Config/services/ConfigService';
-import { ConfigName } from '../../Config/enums/ConfigName';
-import { loadDotenv } from '../utils/loadDotenv';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { ConfigService, externalConfigService } from '@sendByBot/Config/services/ConfigService';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
 
 export const ormProvider = {
   provide: ProviderName.DATA_SOURCE,

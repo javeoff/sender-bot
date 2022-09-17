@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { ClickHouseModule } from '@depyronick/nestjs-clickhouse';
-import { ReadActionsService } from './services/ReadActionsService';
-import { ProviderName } from '../Common/enums/ProviderName';
-import { externalConfigService } from '../Config/services/ConfigService';
-import { ConfigName } from '../Config/enums/ConfigName';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+import { externalConfigService } from '@sendByBot/Config/services/ConfigService';
+import { ReadActionsService } from '@sendByBot/Analytics/services/ReadActionsService';
 
 @Module({
   providers: [

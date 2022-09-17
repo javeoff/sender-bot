@@ -1,10 +1,10 @@
 import { Ctx, Hears, Help, Start, Update } from 'nestjs-telegraf';
-import { TContext } from './Common/types/TContext';
-import { UsersSetter } from './Users/services/UsersSetter';
-import { UserEntity } from './Users/entities/UserEntity';
-import { UsersGetter } from './Users/services/UsersGetter';
-import { SystemErrorFactory } from './SystemError/factories/SystemErrorFactory';
-import { ErrorCode } from './SystemError/enums/ErrorCode';
+import { UsersSetter } from '@sendByBot/Users/services/UsersSetter';
+import { SystemErrorFactory } from '@sendByBot/SystemError/factories/SystemErrorFactory';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { ErrorCode } from '@sendByBot/SystemError/enums/ErrorCode';
+import { UsersGetter } from '@sendByBot/Users/services/UsersGetter';
+import { UserEntity } from '@sendByBot/Users/entities/UserEntity';
 
 @Update()
 export class AppController {

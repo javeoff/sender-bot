@@ -1,4 +1,4 @@
-import { TMessage } from '../types/TMessage';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
 
 type TMessageWithContent = TMessage & {text: string}
 

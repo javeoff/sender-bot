@@ -1,12 +1,12 @@
-import { Ctx } from 'nestjs-telegraf';
-import { StickersSetter } from '../../Stickers/services/StickersSetter';
-import { CacheCallbackQueryService } from '../../Cache/services/CacheCallbackQueryService';
-import { TContext } from '../../Common/types/TContext';
-import { CallbackQueryName } from '../enums/CallbackQueryName';
 import { Injectable } from '@nestjs/common';
-import { ImagesSetter } from '../../Images/services/ImagesSetter';
-import { VideosSetter } from '../../Videos/services/VideosSetter';
-import { isQueryWithName } from '../guards/isQueryWithName';
+import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { Ctx } from 'nestjs-telegraf';
+import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 
 @Injectable()
 export class DeleteQuery {

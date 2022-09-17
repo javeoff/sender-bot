@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { SendPhotoScene } from './scenes/SendPhotoScene';
-import { SceneLocaleService } from './services/SceneLocaleService';
-import { SendStickerScene } from './scenes/SendStickerScene';
-import { StickersModule } from '../Stickers/StickersModule';
-import { ImagesModule } from '../Images/ImagesModule';
-import { VideosModule } from '../Videos/VideosModule';
-import { SendVideoScene } from './scenes/SendVideoScene';
-import { CacheModule } from '../Cache/CacheModule';
-import { InlineKeyboardModule } from '../InlineKeyboard/InlineKeyboardModule';
-import { RenameCodeScene } from './scenes/RenameCodeScene';
+import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
+import { RenameCodeScene } from '@sendByBot/Scenes/scenes/RenameCodeScene';
+import { SendStickerScene } from '@sendByBot/Scenes/scenes/SendStickerScene';
+import { SendPhotoScene } from '@sendByBot/Scenes/scenes/SendPhotoScene';
+import { StickersModule } from '@sendByBot/Stickers/StickersModule';
+import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
+import { ImagesModule } from '@sendByBot/Images/ImagesModule';
+import { SendVideoScene } from '@sendByBot/Scenes/scenes/SendVideoScene';
+import { VideosModule } from '@sendByBot/Videos/VideosModule';
+import { CacheModule } from '@sendByBot/Cache/CacheModule';
 
 @Module({
   providers: [
@@ -24,7 +24,6 @@ import { RenameCodeScene } from './scenes/RenameCodeScene';
     VideosModule,
     CacheModule,
     InlineKeyboardModule,
-    CacheModule,
   ],
 })
 export class SceneModule {}

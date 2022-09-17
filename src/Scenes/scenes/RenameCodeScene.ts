@@ -1,13 +1,13 @@
 import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
-import { TMessage } from '../../Common/types/TMessage';
-import { CacheCallbackQueryService } from '../../Cache/services/CacheCallbackQueryService';
-import { CacheScenesService } from '../../Cache/services/CacheScenesService';
-import { SceneName } from '../enums/SceneName';
-import { StickersSetter } from '../../Stickers/services/StickersSetter';
-import { ImagesSetter } from '../../Images/services/ImagesSetter';
-import { VideosSetter } from '../../Videos/services/VideosSetter';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 
 @Scene(SceneName.RENAME_CODE_SCENE)
 export class RenameCodeScene {

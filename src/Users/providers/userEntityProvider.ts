@@ -1,6 +1,6 @@
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { DataSource } from 'typeorm';
-import { UserEntity } from '../entities/UserEntity';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { UserEntity } from '@sendByBot/Users/entities/UserEntity';
 
 export const userEntityProvider = {
   provide: ProviderName.USER_REPOSITORY,

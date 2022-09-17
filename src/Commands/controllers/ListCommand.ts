@@ -1,10 +1,10 @@
 import { Command, Ctx, Message, Sender, Update } from 'nestjs-telegraf';
-import { TContext } from '../../Common/types/TContext';
-import { PagesKeyboardService } from '../../InlineKeyboard/services/PagesKeyboardService';
-import { CachePagesService } from '../../Cache/services/CachePagesService';
-import { TMessage } from '../../Common/types/TMessage';
-import { PagesListFactory } from '../../Common/factories/PagesListFactory';
-import { PagesService } from '../../CallbackQuery/services/PagesService';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
+import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 
 @Update()
 export class ListCommand {

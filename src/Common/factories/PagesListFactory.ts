@@ -1,4 +1,4 @@
-import { TContext } from '../types/TContext';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 export class PagesListFactory {
   constructor(private readonly i18n: TContext['i18n']) {}

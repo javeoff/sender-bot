@@ -1,6 +1,5 @@
 import { Global, Module } from '@nestjs/common';
-import { SystemErrorFactory } from './factories/SystemErrorFactory';
-
+import { SystemErrorFactory } from '@sendByBot/SystemError/factories/SystemErrorFactory';
 
 @Global()
 @Module({

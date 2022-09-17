@@ -1,6 +1,6 @@
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { DataSource } from 'typeorm';
-import { VideoEntity } from '../entities/VideoEntity';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 
 export const videoEntityProvider = {
   provide: ProviderName.VIDEO_REPOSITORY,

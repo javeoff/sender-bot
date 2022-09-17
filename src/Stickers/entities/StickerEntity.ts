@@ -1,5 +1,5 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
-import { ProviderName } from '../../Common/enums/ProviderName';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Entity({
   name: ProviderName.STICKER_REPOSITORY,

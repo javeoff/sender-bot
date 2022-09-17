@@ -1,10 +1,10 @@
 import { Module } from '@nestjs/common';
-import { VideosController } from './VideosController';
-import { videoEntityProvider } from './providers/videoEntityProvider';
-import { VideosSetter } from './services/VideosSetter';
-import { VideosGetter } from './services/VideosGetter';
-import { EncodingModule } from '../Encoding/EncodingModule';
-import { CacheModule } from '../Cache/CacheModule';
+import { VideosController } from '@sendByBot/Videos/VideosController';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { videoEntityProvider } from '@sendByBot/Videos/providers/videoEntityProvider';
+import { EncodingModule } from '@sendByBot/Encoding/EncodingModule';
+import { CacheModule } from '@sendByBot/Cache/CacheModule';
 
 @Module({
   providers: [

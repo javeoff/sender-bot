@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache, CachingConfig } from 'cache-manager';
-import { ICallbackQueryCache } from '../types/ICallbackQueryCache';
+import { ICallbackQueryCache } from '@sendByBot/Cache/types/ICallbackQueryCache';
 
 @Injectable()
 export class CacheCallbackQueryService {
