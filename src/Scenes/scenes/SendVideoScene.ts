@@ -10,6 +10,7 @@ import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleServic
 import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
 import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.SEND_VIDEO_SCENE)
 export class SendVideoScene {
@@ -20,6 +21,7 @@ export class SendVideoScene {
     private readonly sceneLocaleService: SceneLocaleService,
     private readonly cacheScenesService: CacheScenesService,
     private readonly sceneKeyboardService: SceneKeyboardService,
+    private readonly sendCodeKeyboardService: SendCodeKeyboardService,
   ) {}
 
   @SceneEnter()
@@ -111,6 +113,9 @@ export class SendVideoScene {
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),
+      {
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+      },
     );
   }
 }

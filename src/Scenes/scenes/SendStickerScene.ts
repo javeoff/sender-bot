@@ -10,6 +10,7 @@ import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleServic
 import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
 import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.SEND_STICKER_SCENE)
 export class SendStickerScene {
@@ -19,6 +20,7 @@ export class SendStickerScene {
     private readonly stickersSetter: StickersSetter,
     private readonly sceneKeyboardService: SceneKeyboardService,
     private readonly cacheScenesService: CacheScenesService,
+    private readonly sendCodeKeyboardService: SendCodeKeyboardService,
   ) {}
 
   @SceneEnter()
@@ -90,6 +92,9 @@ export class SendStickerScene {
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),
+      {
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+      },
     );
   }
 }
