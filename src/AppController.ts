@@ -3,12 +3,15 @@ import { TContext } from './Common/types/TContext';
 import { UsersSetter } from './Users/services/UsersSetter';
 import { UserEntity } from './Users/entities/UserEntity';
 import { UsersGetter } from './Users/services/UsersGetter';
+import { SystemErrorFactory } from './SystemError/factories/SystemErrorFactory';
+import { ErrorCode } from './SystemError/enums/ErrorCode';
 
 @Update()
 export class AppController {
   constructor(
     private readonly usersSetter: UsersSetter,
     private readonly usersGetter: UsersGetter,
+    private readonly systemErrorFactory: SystemErrorFactory
   ) {}
 
   @Start()
@@ -46,6 +49,9 @@ export class AppController {
 
   @Hears(['photoid'])
   async sendImage(@Ctx() ctx: TContext) {
-    await ctx.replyWithPhoto('AgACAgIAAxkBAAICxWMkfMsMh9Mae4grh9b15lmIVuDPAALTvzEbzdMpSdNJbxxTy0LUAQADAgADeAADKQQ');
+    throw this.systemErrorFactory.create(
+      ErrorCode.OTHER,
+      'Не найдено фото'
+    )
   }
 }

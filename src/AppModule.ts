@@ -19,6 +19,8 @@ import { i18nMiddleware } from './Locale/middlewares/i18nMiddleware';
 import { AnalyticsModule } from './Analytics/AnalyticsModule';
 import { ConfigService } from './Config/services/ConfigService';
 import { ConfigName } from './Config/enums/ConfigName';
+import { SystemErrorModule } from './SystemError/SystemErrorModule';
+import { ErrorModule } from './Error/ErrorModule';
 
 @Module({
   imports: [
@@ -45,6 +47,8 @@ import { ConfigName } from './Config/enums/ConfigName';
     EncodingModule,
     CacheModule,
     CommandsModule,
+    ErrorModule,
+    SystemErrorModule,
   ],
   providers: [
     AppController,
