@@ -35,7 +35,7 @@ export class SendPhotoScene {
     const uniqueFileId = LARGE_PHOTO?.file_unique_id || MEDIUM_PHOTO?.file_unique_id || SMALL_PHOTO?.file_unique_id;
     const caption = message?.caption;
 
-    if (!fileId || uniqueFileId) {
+    if (!fileId || !uniqueFileId) {
       ctx.scene.leave();
       return;
     }
