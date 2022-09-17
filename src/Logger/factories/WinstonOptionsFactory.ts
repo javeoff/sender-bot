@@ -1,15 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import path from 'path';
 import { WinstonModuleOptions } from 'nest-winston';
+import path from 'node:path';
 import { format, transports } from 'winston';
-import { LoggerLevel } from '@sendByBot/Logger/enums/LoggerLevel';
 import Transport from 'winston-transport';
+
+import { LoggerLevel } from '@sendByBot/Logger/enums/LoggerLevel';
 
 @Injectable()
 export class WinstonOptionsFactory {
   private readonly timestampFormat = 'DD.MM.YYYY HH:MM:SS';
   private get date(): string {
-    return new Date().toISOString().split('T')[0]
+    // eslint-disable-next-line newline-per-chained-call
+    return new Date().toISOString().split('T')[0];
   }
   private readonly logErrorFilename = path.join(
     process.cwd(),
@@ -27,7 +29,7 @@ export class WinstonOptionsFactory {
         format: this.timestampFormat,
       }),
       format.printf(
-        ({level, message, timestamp}) =>
+        ({ level, message, timestamp }) =>
           `${timestamp as string} [${level}]: ${message}`,
       ),
     );

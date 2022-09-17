@@ -1,24 +1,28 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { DataSource } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 
 @Injectable()
 export class ListBuilder {
-  constructor(
+  public constructor(
     @Inject(ProviderName.DATA_SOURCE)
-    private readonly dataSource: DataSource
+    private readonly dataSource: DataSource,
   ) {}
 
-  async getList(
+  public async getList(
     userId: string,
     skip?: number,
     take?: number,
-  ): Promise<{
-    id: number;
-    code: string;
-    table_name: string;
-  }[]> {
+  ): Promise<
+    Array<{
+      id: number;
+      code: string;
+      table_name: string;
+    }>
+  > {
     let query = '';
+
     query += "SELECT id, code, 'video' AS table_name ";
     query += 'FROM "video-repository" ';
     query += `WHERE user_id='${userId}' `;
@@ -38,6 +42,6 @@ export class ListBuilder {
     query += ';';
 
     console.log(query);
-    return this.dataSource.query(query)
+    return this.dataSource.query(query);
   }
 }

@@ -1,5 +1,5 @@
-import { TReadActionType } from '@sendByBot/Analytics/types/TReadActionType';
 import { TChatType } from '@sendByBot/Analytics/types/TChatType';
+import { TReadActionType } from '@sendByBot/Analytics/types/TReadActionType';
 
 export interface IReadAction {
   userId: string;

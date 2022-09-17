@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
-import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
+
 import { ConfigModule } from '@sendByBot/Config/ConfigModule';
+import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
 
 @Module({
   providers: [EncodingService],

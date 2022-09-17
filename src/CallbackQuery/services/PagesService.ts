@@ -1,14 +1,17 @@
 import { Injectable } from '@nestjs/common';
-import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
+
 import { ListBuilder } from '@sendByBot/Common/builders/ListBuilder';
+import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
 
 @Injectable()
 export class PagesService {
-  constructor(
-    private readonly listBuilder: ListBuilder,
-  ) {}
+  public constructor(private readonly listBuilder: ListBuilder) {}
 
-  async getPageRowsByUserId(userId: string, skip = 0, take = 5): Promise<{
+  public async getPageRowsByUserId(
+    userId: string,
+    skip = 0,
+    take = 5,
+  ): Promise<{
     data: string[];
     hasNext: boolean;
   }> {
@@ -16,18 +19,20 @@ export class PagesService {
     const [lastItem] = items.splice(5);
 
     const hasNext = !!lastItem;
+
     console.log(items, hasNext, lastItem);
 
     const factory = new RowEntitiesFactory();
-    factory.addImagesEntities(items.filter(({table_name}) =>
-      table_name === 'image'
-    ))
-    factory.addStickerEntities(items.filter(({table_name}) =>
-      table_name === 'sticker'
-    ))
-    factory.addVideosEntities(items.filter(({table_name}) =>
-      table_name === 'video'
-    ))
+
+    factory.addImagesEntities(
+      items.filter(({ table_name }) => table_name === 'image'),
+    );
+    factory.addStickerEntities(
+      items.filter(({ table_name }) => table_name === 'sticker'),
+    );
+    factory.addVideosEntities(
+      items.filter(({ table_name }) => table_name === 'video'),
+    );
 
     return {
       data: factory.rows,

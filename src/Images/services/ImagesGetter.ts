@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { Equal, ILike, Repository } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { ImageEntity } from '@sendByBot/Images/entities/ImageEntity';
 
@@ -10,32 +11,40 @@ export class ImagesGetter {
     private readonly imageRepository: Repository<ImageEntity>,
   ) {}
 
-  getById(userId: string, id: string): Promise<ImageEntity[]> {
+  public getById(userId: string, id: string): Promise<ImageEntity[]> {
     return this.imageRepository.findBy({
       user_id: Equal(userId),
       id: Equal(Number(id)),
     });
   }
 
-  getByCode(userId: string, code: string): Promise<ImageEntity[]> {
+  public getByCode(userId: string, code: string): Promise<ImageEntity[]> {
     return this.imageRepository.findBy({
       user_id: Equal(userId),
       code: ILike(`${code}%`),
     });
   }
 
-  getByUniqueId(userId: string, uniquePhotoId: string): Promise<ImageEntity[]> {
+  public getByUniqueId(
+    userId: string,
+    uniquePhotoId: string,
+  ): Promise<ImageEntity[]> {
     return this.imageRepository.findBy({
       user_id: Equal(userId),
       unique_image_id: Equal(uniquePhotoId),
     });
   }
 
-  async hasByUniqueId(userId: string, uniquePhotoId: string): Promise<boolean> {
-    return (await this.getByUniqueId(userId, uniquePhotoId))?.length > 0;
+  public async hasByUniqueId(
+    userId: string,
+    uniquePhotoId: string,
+  ): Promise<boolean> {
+    const result = await this.getByUniqueId(userId, uniquePhotoId);
+
+    return result?.length > 0;
   }
 
-  getAll(userId: string): Promise<ImageEntity[]> {
+  public getAll(userId: string): Promise<ImageEntity[]> {
     return this.imageRepository.findBy({
       user_id: Equal(userId),
     });

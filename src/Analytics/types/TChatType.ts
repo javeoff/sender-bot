@@ -1,1 +1,6 @@
-export type TChatType = "channel" | "private" | "group" | "supergroup" | "sender";
+export type TChatType =
+  | 'channel'
+  | 'private'
+  | 'group'
+  | 'supergroup'
+  | 'sender';

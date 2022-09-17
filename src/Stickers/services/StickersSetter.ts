@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 
@@ -10,17 +11,20 @@ export class StickersSetter {
     private readonly stickerRepository: Repository<StickerEntity>,
   ) {}
 
-  removeByUniqueStickerId(id: string) {
+  public removeByUniqueStickerId(id: string): void {
     void this.stickerRepository.delete({
-      unique_sticker_id: id
-    })
+      unique_sticker_id: id,
+    });
   }
 
-  add(item: StickerEntity) {
+  public add(item: StickerEntity): void {
     void this.stickerRepository.insert(item);
   }
 
-  change(where: Partial<StickerEntity>, updateValue: Partial<StickerEntity>) {
+  public change(
+    where: Partial<StickerEntity>,
+    updateValue: Partial<StickerEntity>,
+  ): Promise<UpdateResult> {
     return this.stickerRepository.update(where, updateValue);
   }
 }

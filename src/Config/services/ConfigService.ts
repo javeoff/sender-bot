@@ -1,8 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
-import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
 
-loadDotenv()
+import { loadDotenv } from '@sendByBot/Common/utils/loadDotenv';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
+
+loadDotenv();
 
 @Injectable()
 export class ConfigService {

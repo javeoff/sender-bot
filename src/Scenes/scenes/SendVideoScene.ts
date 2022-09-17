@@ -1,14 +1,15 @@
-import { SceneName } from '../enums/SceneName';
 import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
-import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
-import { TMessage } from '@sendByBot/Common/types/TMessage';
-import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
-import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+
+import { SceneName } from '../enums/SceneName';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
 import { TContext } from '@sendByBot/Common/types/TContext';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
 import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
-import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
+import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
 
 @Scene(SceneName.SEND_VIDEO_SCENE)
 export class SendVideoScene {
@@ -22,10 +23,10 @@ export class SendVideoScene {
   ) {}
 
   @SceneEnter()
-  async onSceneEnter(
+  public async onSceneEnter(
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
-  ) {
+  ): Promise<void> {
     const message = ctx.message;
 
     if (!('video' in message)) {
@@ -39,6 +40,7 @@ export class SendVideoScene {
 
     if (caption) {
       const video = new VideoEntity();
+
       video.unique_video_id = uniqueFileId;
       video.video_id = fileId;
       video.user_id = userId;
@@ -46,41 +48,45 @@ export class SendVideoScene {
       video.thumb_id = thumb.file_id;
 
       await this.videosSetter.add(video);
-      ctx.reply(this.sceneLocaleService.getSuccessSaveMediaMessage(
-        message.caption
-      ));
-      ctx.scene.leave();
+      void ctx.reply(
+        this.sceneLocaleService.getSuccessSaveMediaMessage(message.caption),
+      );
+      void ctx.scene.leave();
       return;
     }
 
-    await this.cacheScenesService.set(userId, {
-      videoId: fileId,
-      uniqueVideoId: uniqueFileId,
-      thumbId: thumb.file_id,
-    }, { ttl: 10_000 });
-
-    const isExisting = await this.videosGetter.hasByUniqueId(
+    await this.cacheScenesService.set(
       userId,
-      fileId,
+      {
+        videoId: fileId,
+        uniqueVideoId: uniqueFileId,
+        thumbId: thumb.file_id,
+      },
+      { ttl: 10_000 },
     );
 
-    ctx.reply(ctx.i18n.t('scenes.success_load_media', {
-      entityName: 'видео'
-    }), {
-      reply_markup: this.sceneKeyboardService.getKeyboard(
-        ctx.i18n,
-        isExisting
-      )
-    })
+    const isExisting = await this.videosGetter.hasByUniqueId(userId, fileId);
+
+    void ctx.reply(
+      ctx.i18n.t('scenes.success_load_media', {
+        entityName: 'видео',
+      }),
+      {
+        reply_markup: this.sceneKeyboardService.getKeyboard(
+          ctx.i18n,
+          isExisting,
+        ),
+      },
+    );
   }
 
   @On('text')
-  async onText(
+  public async onText(
     @Ctx() ctx: TContext,
     @Message() message: TMessage,
     @Sender('id') userId: string,
-  ) {
-    ctx.scene.leave();
+  ): Promise<void> {
+    void ctx.scene.leave();
     if (!isMessageWithText(message)) {
       return;
     }
@@ -92,6 +98,7 @@ export class SendVideoScene {
     }
 
     const video = new VideoEntity();
+
     video.unique_video_id = cache.uniqueVideoId;
     video.video_id = cache.videoId;
     video.user_id = userId;
@@ -100,8 +107,10 @@ export class SendVideoScene {
 
     await this.videosSetter.add(video);
 
-    ctx.reply(ctx.i18n.t('scenes.success_save_media', {
-      code: message.text
-    }));
+    void ctx.reply(
+      ctx.i18n.t('scenes.success_save_media', {
+        code: message.text,
+      }),
+    );
   }
 }

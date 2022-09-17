@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 export enum SceneName {
   SEND_PHOTO_SCENE = 'send-photo-scene',
   SEND_STICKER_SCENE = 'send-sticker-scene',

@@ -18,7 +18,8 @@ interface IRenameCodeScenesCache {
   test: string;
 }
 
-export type IScenesCache = IVideoScenesCache
+export type IScenesCache =
+  | IVideoScenesCache
   | IImageScenesCache
   | IStickerScenesCache
   | IRenameCodeScenesCache;

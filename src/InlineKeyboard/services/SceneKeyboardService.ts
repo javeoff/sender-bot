@@ -1,11 +1,15 @@
 import { Injectable } from '@nestjs/common';
 import { InlineKeyboardMarkup } from 'typegram/markup';
-import { TContext } from '@sendByBot/Common/types/TContext';
+
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Injectable()
 export class SceneKeyboardService {
-  getKeyboard(i18n: TContext['i18n'], isExisting: boolean): InlineKeyboardMarkup {
+  public getKeyboard(
+    i18n: TContext['i18n'],
+    isExisting: boolean,
+  ): InlineKeyboardMarkup {
     const firstRow = [
       // {
       //   text: i18n.t('keyboards.scene.customize'),
@@ -14,30 +18,23 @@ export class SceneKeyboardService {
     ];
 
     if (isExisting) {
-      firstRow.push(
-        {
-          text: i18n.t('keyboards.scene.delete'),
-          callback_data: CallbackQueryName.DELETE
-        }
-      )
+      firstRow.push({
+        text: i18n.t('keyboards.scene.delete'),
+        callback_data: CallbackQueryName.DELETE,
+      });
     }
 
     const secondRow = [];
 
     if (isExisting) {
-      secondRow.push(
-        {
-          text: i18n.t('keyboards.scene.get_code'),
-          callback_data: CallbackQueryName.GET_CODE
-        }
-      );
+      secondRow.push({
+        text: i18n.t('keyboards.scene.get_code'),
+        callback_data: CallbackQueryName.GET_CODE,
+      });
     }
 
     return {
-      inline_keyboard: [
-        firstRow,
-        secondRow,
-      ]
-    }
+      inline_keyboard: [firstRow, secondRow],
+    };
   }
 }

@@ -1,5 +1,6 @@
-import { Equal, ILike, Repository } from 'typeorm';
 import { Inject, Injectable } from '@nestjs/common';
+import { Equal, ILike, Repository } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 
@@ -10,32 +11,40 @@ export class StickersGetter {
     private readonly stickerRepository: Repository<StickerEntity>,
   ) {}
 
-  getById(userId: string, id: string): Promise<StickerEntity[]> {
+  public getById(userId: string, id: string): Promise<StickerEntity[]> {
     return this.stickerRepository.findBy({
       user_id: Equal(userId),
       id: Equal(Number(id)),
     });
   }
 
-  getByUniqueId(userId: string, uniqueStickerId: string): Promise<StickerEntity[]> {
+  public getByUniqueId(
+    userId: string,
+    uniqueStickerId: string,
+  ): Promise<StickerEntity[]> {
     return this.stickerRepository.findBy({
       user_id: Equal(userId),
       unique_sticker_id: Equal(uniqueStickerId),
     });
   }
 
-  async hasByUniqueId(userId: string, uniqueStickerId: string): Promise<boolean> {
-    return (await this.getByUniqueId(userId, uniqueStickerId)).length > 0;
+  public async hasByUniqueId(
+    userId: string,
+    uniqueStickerId: string,
+  ): Promise<boolean> {
+    const result = await this.getByUniqueId(userId, uniqueStickerId);
+
+    return result.length > 0;
   }
 
-  getByCode(userId: string, code: string): Promise<StickerEntity[]> {
+  public getByCode(userId: string, code: string): Promise<StickerEntity[]> {
     return this.stickerRepository.findBy({
       user_id: Equal(userId),
       code: ILike(`${code}%`),
     });
   }
 
-  getAll(userId: string): Promise<StickerEntity[]> {
+  public getAll(userId: string): Promise<StickerEntity[]> {
     return this.stickerRepository.findBy({
       user_id: Equal(userId),
     });

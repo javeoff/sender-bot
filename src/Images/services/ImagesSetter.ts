@@ -1,5 +1,6 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { Repository } from 'typeorm';
+import { Repository, UpdateResult } from 'typeorm';
+
 import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
 import { ImageEntity } from '@sendByBot/Images/entities/ImageEntity';
 
@@ -10,23 +11,26 @@ export class ImagesSetter {
     private readonly imageRepository: Repository<ImageEntity>,
   ) {}
 
-  removeByImageId(imageId: string): void {
+  public removeByImageId(imageId: string): void {
     void this.imageRepository.delete({
-      image_id: imageId
-    })
+      image_id: imageId,
+    });
   }
 
-  removeByImageUniqueId(imageId: string): void {
+  public removeByImageUniqueId(imageId: string): void {
     void this.imageRepository.delete({
-      unique_image_id: imageId
-    })
+      unique_image_id: imageId,
+    });
   }
 
-  add(item: ImageEntity) {
+  public add(item: ImageEntity): void {
     void this.imageRepository.insert(item);
   }
 
-  change(where: Partial<ImageEntity>, updateValue: Partial<ImageEntity>) {
+  public change(
+    where: Partial<ImageEntity>,
+    updateValue: Partial<ImageEntity>,
+  ): Promise<UpdateResult> {
     return this.imageRepository.update(where, updateValue);
   }
 }

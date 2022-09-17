@@ -1,30 +1,29 @@
-import { Ctx, Sender } from 'nestjs-telegraf';
 import { Injectable } from '@nestjs/common';
-import { TContext } from '@sendByBot/Common/types/TContext';
-import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { Ctx, Sender } from 'nestjs-telegraf';
+
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
-import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
+import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Injectable()
 export class ListQuery {
-  constructor(
-    private readonly pagesService: PagesService,
-  ) {}
+  public constructor(private readonly pagesService: PagesService) {}
 
-  async onListQuery(
+  public async onListQuery(
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
-  ) {
+  ): Promise<void> {
     if (!isQueryWithName(ctx, CallbackQueryName.LIST)) {
       return;
     }
 
-    ctx.scene.leave()
+    void ctx.scene.leave();
 
     const factory = new PagesListFactory(ctx.i18n);
-    const {data: rows} = await this.pagesService.getPageRowsByUserId(userId);
+    const { data: rows } = await this.pagesService.getPageRowsByUserId(userId);
 
-    ctx.reply(factory.createReply(rows))
+    void ctx.reply(factory.createReply(rows));
   }
 }
