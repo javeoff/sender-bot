@@ -5,13 +5,15 @@ import { TContext } from '@sendByBot/Common/types/TContext';
 import { ErrorCode } from '@sendByBot/SystemError/enums/ErrorCode';
 import { UsersGetter } from '@sendByBot/Users/services/UsersGetter';
 import { UserEntity } from '@sendByBot/Users/entities/UserEntity';
+import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
 
 @Update()
 export class AppController {
   constructor(
     private readonly usersSetter: UsersSetter,
     private readonly usersGetter: UsersGetter,
-    private readonly systemErrorFactory: SystemErrorFactory
+    private readonly systemErrorFactory: SystemErrorFactory,
+    private readonly logger: LoggerService,
   ) {}
 
   @Start()
@@ -47,8 +49,15 @@ export class AppController {
     await ctx.reply('Hey there');
   }
 
+  @Hears(['log'])
+  async log(@Ctx() ctx: TContext) {
+    this.logger.info('test log command');
+    await ctx.reply('test log')
+  }
+
   @Hears(['photoid'])
   async sendImage(@Ctx() ctx: TContext) {
+    this.logger.info('Information log')
     throw this.systemErrorFactory.create(
       ErrorCode.OTHER,
       'Не найдено фото'

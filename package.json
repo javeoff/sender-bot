@@ -31,6 +31,7 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.2",
     "eslint-config-jave": "^1.2.0",
+    "nest-winston": "^1.7.0",
     "nestjs-i18n": "^9.1.10",
     "nestjs-telegraf": "^2.6.1",
     "pg": "^8.8.0",
@@ -42,6 +43,8 @@
     "typeorm": "^0.3.9",
     "typescript": "^4.8.3",
     "typescript-transform-paths": "^3.3.1",
-    "uuid": "^9.0.0"
+    "uuid": "^9.0.0",
+    "winston": "^3.8.2",
+    "winston-transport": "^4.5.0"
   }
 }

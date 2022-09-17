@@ -18,7 +18,7 @@ export const ormProvider = {
       migrations: ["src/**/migrations/*.{js,ts}"],
       subscribers: ["src/**/subscribers/*.{js,ts}"],
       synchronize: true,
-      logging: true,
+      logging: false,
     }
 
     const dataSource = new DataSource(config)
@@ -40,5 +40,5 @@ export default new DataSource({
   migrations: ["src/**/migrations/*.{ts,js}"],
   subscribers: ["src/**/subscribers/*.{ts,js}"],
   synchronize: true,
-  logging: true,
+  logging: false,
 })

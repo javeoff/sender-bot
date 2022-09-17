@@ -21,6 +21,7 @@ import { ImagesModule } from '@sendByBot/Images/ImagesModule';
 import { sessionMiddleware } from '@sendByBot/Common/middlewares/sessionMiddleware';
 import { ErrorModule } from '@sendByBot/Error/ErrorModule';
 import { CacheModule } from '@sendByBot/Cache/CacheModule';
+import { LoggerModule } from '@sendByBot/Logger/LoggerModule';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { CacheModule } from '@sendByBot/Cache/CacheModule';
       },
       inject: [ConfigService],
     }),
+    LoggerModule,
     AnalyticsModule,
     CommonModule,
     SceneModule,
