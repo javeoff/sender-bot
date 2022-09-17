@@ -21,7 +21,7 @@ jobs:
           secrets: ${{ toJson(secrets) }}
           script: git pull
       - name: Install dependencies
-        run: npm install --legacy-peer-deps
+        run: npm install --force
       - name: Build application
         run: npm run build
 
@@ -98,7 +98,7 @@ jobs:
           script: make clickhouse
   notification:
     name: Telegram Notification
-    needs: [deploy]
+    needs: [ deploy ]
     runs-on: ubuntu-latest
     if: always()
     steps:
