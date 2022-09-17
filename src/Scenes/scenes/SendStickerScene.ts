@@ -86,7 +86,7 @@ export class SendStickerScene {
 
     await this.stickersSetter.add(sticker);
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),

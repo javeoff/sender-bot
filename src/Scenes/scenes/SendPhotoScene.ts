@@ -114,7 +114,7 @@ export class SendPhotoScene {
 
     await this.imagesSetter.add(image);
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),

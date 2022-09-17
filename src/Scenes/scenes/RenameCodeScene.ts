@@ -77,7 +77,7 @@ export class RenameCodeScene {
         break;
     }
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_code_rename', {
         code: text,
       }),

@@ -107,7 +107,7 @@ export class SendVideoScene {
 
     await this.videosSetter.add(video);
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),
