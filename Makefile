@@ -31,7 +31,12 @@ rm-postgres:
 rm-clickhouse:
 	docker rm -f clickhouse_host
 redis:
-	docker run -d -v ~/.redis:/usr/local/etc/redis --name myredis --network=sendbot-network redis redis-server
+	docker run -d \
+		-v ~/.redis:/usr/local/etc/redis \
+		--name myredis \
+		--network=sendbot-network \
+		-p 6379:6379 \
+		redis redis-server
 postgres:
 	docker run -d --name postgres_host \
 		-e POSTGRES_USER=root \
