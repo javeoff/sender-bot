@@ -24,22 +24,11 @@ jobs:
         run: npm install --force
       - name: Build application
         run: npm run build
-
-  lint:
-    name: Linting
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       - name: Run ESLint
         run: npm run lint
   deploy:
     name: Deploy
-    needs: lint
+    needs: build
     runs-on: ubuntu-latest
 
     steps:
