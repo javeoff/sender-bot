@@ -21,7 +21,7 @@ jobs:
           secrets: ${{ toJson(secrets) }}
           script: git pull
       - name: Install dependencies
-        run: npm install
+        run: npm install --legacy-peer-deps
       - name: Build application
         run: npm run build
 
