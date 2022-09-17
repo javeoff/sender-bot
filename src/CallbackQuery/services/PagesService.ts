@@ -20,7 +20,7 @@ export class PagesService {
 
     const factory = new RowEntitiesFactory();
     factory.addImagesEntities(items.filter(({table_name}) =>
-      table_name === 'images'
+      table_name === 'image'
     ))
     factory.addStickerEntities(items.filter(({table_name}) =>
       table_name === 'sticker'
