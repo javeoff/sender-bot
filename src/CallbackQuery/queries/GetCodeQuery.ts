@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
-import { CallbackQueryName } from '../enums/CallbackQueryName';
-import { isQueryWithName } from '../guards/isQueryWithName';
-import { TContext } from '../../Common/types/TContext';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
+import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
+import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
 import { Ctx } from 'nestjs-telegraf';
-import { CacheCallbackQueryService } from '../../Cache/services/CacheCallbackQueryService';
-import { StickersGetter } from '../../Stickers/services/StickersGetter';
-import { ImagesGetter } from '../../Images/services/ImagesGetter';
-import { VideosGetter } from '../../Videos/services/VideosGetter';
-import { RowEntitiesFactory } from '../../Common/factories/RowEntitiesFactory';
+import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 
 @Injectable()
 export class GetCodeQuery {

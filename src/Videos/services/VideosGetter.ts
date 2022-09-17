@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { Equal, ILike, Repository } from 'typeorm';
-import { VideoEntity } from '../entities/VideoEntity';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 
 @Injectable()
 export class VideosGetter {

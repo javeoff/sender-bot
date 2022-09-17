@@ -1,7 +1,7 @@
 import { ArgumentsHost, Catch } from '@nestjs/common';
 import { BaseExceptionFilter } from '@nestjs/core';
-import { TContext } from '../../Common/types/TContext';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Catch()
 export class BotExceptionFilter extends BaseExceptionFilter {

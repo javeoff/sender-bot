@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import { StickerEntity } from '../entities/StickerEntity';
-import { ProviderName } from '../../Common/enums/ProviderName';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 
 export const stickerEntityProvider = {
   provide: ProviderName.STICKER_REPOSITORY,

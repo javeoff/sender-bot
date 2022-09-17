@@ -1,10 +1,10 @@
 import { Ctx, Message, On, Sender, Update } from 'nestjs-telegraf';
-import { TContext } from '../Common/types/TContext';
-import { SceneName } from '../Scenes/enums/SceneName';
-import { ImagesGetter } from './services/ImagesGetter';
-import { EncodingService } from '../Encoding/services/EncodingService';
-import { TMessage } from '../Common/types/TMessage';
-import { CacheCallbackQueryService } from '../Cache/services/CacheCallbackQueryService';
+import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
+import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
+import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Update()
 export class ImagesController {

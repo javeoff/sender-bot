@@ -1,12 +1,12 @@
 import { Injectable } from '@nestjs/common';
 import { Ctx } from 'nestjs-telegraf';
-import { isQueryWithName } from '../guards/isQueryWithName';
-import { TContext } from '../../Common/types/TContext';
-import { CallbackQueryName } from '../enums/CallbackQueryName';
-import { CachePagesService } from '../../Cache/services/CachePagesService';
-import { PagesKeyboardService } from '../../InlineKeyboard/services/PagesKeyboardService';
-import { PagesListFactory } from '../../Common/factories/PagesListFactory';
-import { PagesService } from '../services/PagesService';
+import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
+import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
+import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 
 @Injectable()
 export class PrevPageQuery {

@@ -1,7 +1,7 @@
+import { ormProvider } from '@sendByBot/Common/providers/ormProvider';
+import { ConfigModule } from '@sendByBot/Config/ConfigModule';
+import { ListBuilder } from '@sendByBot/Common/builders/ListBuilder';
 import { Global, Module } from '@nestjs/common';
-import { ormProvider } from './providers/ormProvider';
-import { ConfigModule } from '../Config/ConfigModule';
-import { ListBuilder } from './builders/ListBuilder';
 
 @Global()
 @Module({

@@ -1,7 +1,7 @@
-import { ConfigService } from '../../Config/services/ConfigService';
-import { ConfigName } from '../../Config/enums/ConfigName';
+import { ConfigService } from '@sendByBot/Config/services/ConfigService';
+import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
 import { Injectable } from '@nestjs/common';
-const sha1 = require('sha1');
+import sha1 from 'sha1';
 
 @Injectable()
 export class EncodingService {

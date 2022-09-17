@@ -1,14 +1,14 @@
 import { Ctx, Message, On, Scene, SceneEnter, Sender } from 'nestjs-telegraf';
-import { SceneName } from '../enums/SceneName';
-import { TContext } from '../../Common/types/TContext';
-import { SceneLocaleService } from '../services/SceneLocaleService';
-import { TMessage } from '../../Common/types/TMessage';
-import { isMessageWithText } from '../../Common/typeGuards/isMessageWithText';
-import { ImageEntity } from '../../Images/entities/ImageEntity';
-import { ImagesSetter } from '../../Images/services/ImagesSetter';
-import { CacheScenesService } from '../../Cache/services/CacheScenesService';
-import { SceneKeyboardService } from '../../InlineKeyboard/services/SceneKeyboardService';
-import { ImagesGetter } from '../../Images/services/ImagesGetter';
+import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
+import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { ImageEntity } from '@sendByBot/Images/entities/ImageEntity';
+import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
+import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
+import { CacheScenesService } from '@sendByBot/Cache/services/CacheScenesService';
 
 @Scene(SceneName.SEND_PHOTO_SCENE)
 export class SendPhotoScene {
@@ -35,7 +35,7 @@ export class SendPhotoScene {
     const uniqueFileId = LARGE_PHOTO?.file_unique_id || MEDIUM_PHOTO?.file_unique_id || SMALL_PHOTO?.file_unique_id;
     const caption = message?.caption;
 
-    if (!fileId || uniqueFileId) {
+    if (!fileId || !uniqueFileId) {
       ctx.scene.leave();
       return;
     }

@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { ProviderName } from '../../Common/enums/ProviderName';
 import { Repository } from 'typeorm';
-import { ImageEntity } from '../entities/ImageEntity';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { ImageEntity } from '@sendByBot/Images/entities/ImageEntity';
 
 @Injectable()
 export class ImagesSetter {

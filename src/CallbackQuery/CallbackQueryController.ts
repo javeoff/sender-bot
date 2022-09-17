@@ -1,11 +1,11 @@
 import { Ctx, On, Sender, Update } from 'nestjs-telegraf';
-import { DeleteQuery } from './queries/DeleteQuery';
-import { ListQuery } from './queries/ListQuery';
-import { TContext } from '../Common/types/TContext';
-import { GetCodeQuery } from './queries/GetCodeQuery';
-import { RenameCodeQuery } from './queries/RenameCodeQuery';
-import { NextPageQuery } from './queries/NextPageQuery';
-import { PrevPageQuery } from './queries/PrevPageQuery';
+import { RenameCodeQuery } from '@sendByBot/CallbackQuery/queries/RenameCodeQuery';
+import { GetCodeQuery } from '@sendByBot/CallbackQuery/queries/GetCodeQuery';
+import { PrevPageQuery } from '@sendByBot/CallbackQuery/queries/PrevPageQuery';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { DeleteQuery } from '@sendByBot/CallbackQuery/queries/DeleteQuery';
+import { ListQuery } from '@sendByBot/CallbackQuery/queries/ListQuery';
+import { NextPageQuery } from '@sendByBot/CallbackQuery/queries/NextPageQuery';
 
 @Update()
 export class CallbackQueryController {

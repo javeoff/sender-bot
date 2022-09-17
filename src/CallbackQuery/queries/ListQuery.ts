@@ -1,10 +1,10 @@
 import { Ctx, Sender } from 'nestjs-telegraf';
-import { CallbackQueryName } from '../enums/CallbackQueryName';
-import { TContext } from '../../Common/types/TContext';
 import { Injectable } from '@nestjs/common';
-import { isQueryWithName } from '../guards/isQueryWithName';
-import { PagesListFactory } from '../../Common/factories/PagesListFactory';
-import { PagesService } from '../services/PagesService';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
+import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
+import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 
 @Injectable()
 export class ListQuery {

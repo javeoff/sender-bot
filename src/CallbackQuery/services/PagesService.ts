@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { RowEntitiesFactory } from '../../Common/factories/RowEntitiesFactory';
-import { ListBuilder } from '../../Common/builders/ListBuilder';
+import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
+import { ListBuilder } from '@sendByBot/Common/builders/ListBuilder';
 
 @Injectable()
 export class PagesService {
@@ -20,7 +20,7 @@ export class PagesService {
 
     const factory = new RowEntitiesFactory();
     factory.addImagesEntities(items.filter(({table_name}) =>
-      table_name === 'images'
+      table_name === 'image'
     ))
     factory.addStickerEntities(items.filter(({table_name}) =>
       table_name === 'sticker'

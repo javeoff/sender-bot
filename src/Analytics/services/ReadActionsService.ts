@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
-import { IReadAction } from '../types/IReadAction';
 import { ClickHouseClient } from '@depyronick/nestjs-clickhouse';
-import { ProviderName } from '../../Common/enums/ProviderName';
+import { ProviderName } from '@sendByBot/Common/enums/ProviderName';
+import { IReadAction } from '@sendByBot/Analytics/types/IReadAction';
 
 @Injectable()
 export class ReadActionsService {

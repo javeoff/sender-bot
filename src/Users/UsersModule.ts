@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { userEntityProvider } from './providers/userEntityProvider';
-import { UsersSetter } from './services/UsersSetter';
-import { UsersGetter } from './services/UsersGetter';
+import { UsersSetter } from '@sendByBot/Users/services/UsersSetter';
+import { userEntityProvider } from '@sendByBot/Users/providers/userEntityProvider';
+import { UsersGetter } from '@sendByBot/Users/services/UsersGetter';
 
 @Module({
   providers: [

@@ -1,6 +1,6 @@
 import { CACHE_MANAGER, Inject, Injectable } from '@nestjs/common';
 import { Cache, CachingConfig } from 'cache-manager';
-import { IPagesCache } from '../types/IPagesCache';
+import { IPagesCache } from '@sendByBot/Cache/types/IPagesCache';
 
 @Injectable()
 export class CachePagesService {

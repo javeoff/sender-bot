@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InlineKeyboardMarkup } from 'typegram/markup';
-import { CallbackQueryName } from '../../CallbackQuery/enums/CallbackQueryName';
-import { TContext } from '../../Common/types/TContext';
+import { TContext } from '@sendByBot/Common/types/TContext';
+import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 
 @Injectable()
 export class SceneKeyboardService {
