@@ -29,6 +29,11 @@ export class NextPageQuery {
     const take = 5;
 
     const cache = await this.cachePagesService.get(userId);
+
+    if (!cache) {
+      return;
+    }
+
     const newPageIndex = cache.pageIndex + 1;
 
     const { data: rows, hasNext } = await this.pagesService.getPageRowsByUserId(

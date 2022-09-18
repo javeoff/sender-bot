@@ -28,6 +28,11 @@ export class PrevPageQuery {
     const take = 5;
 
     const cache = await this.cachePagesService.get(userId);
+
+    if (!cache) {
+      return;
+    }
+
     const newPageIndex = cache.pageIndex - 1;
 
     if (newPageIndex < 0) {

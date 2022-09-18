@@ -109,7 +109,7 @@ export class SendPhotoScene {
 
     const cache = await this.cacheScenesService.get(userId);
 
-    if (!('photoId' in cache)) {
+    if (!cache || !('photoId' in cache)) {
       return;
     }
 
