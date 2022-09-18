@@ -6,11 +6,11 @@ import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithTex
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { TMessage } from '@sendByBot/Common/types/TMessage';
 import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
 import { VideoEntity } from '@sendByBot/Videos/entities/VideoEntity';
 import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
 import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
-import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.SEND_VIDEO_SCENE)
 export class SendVideoScene {
