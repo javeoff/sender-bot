@@ -84,7 +84,10 @@ export class RenameCodeScene {
         code: text,
       }),
       {
-        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(
+          message.text,
+          ctx.i18n,
+        ),
       },
     );
   }

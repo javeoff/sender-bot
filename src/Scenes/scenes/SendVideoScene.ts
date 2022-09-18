@@ -114,7 +114,10 @@ export class SendVideoScene {
         code: message.text,
       }),
       {
-        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(
+          message.text,
+          ctx.i18n,
+        ),
       },
     );
   }

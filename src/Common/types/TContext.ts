@@ -1,7 +1,6 @@
 import { Scenes } from 'telegraf';
+import TelegrafI18n from 'telegraf-i18n';
 
 export interface TContext extends Scenes.SceneContext {
-  i18n: {
-    t(data: string, keys?: Record<string, string>): string;
-  };
+  i18n: TelegrafI18n;
 }

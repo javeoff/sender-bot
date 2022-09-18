@@ -16,6 +16,7 @@ keyboards:
     customize: "Кастомизировать ★"
     delete: "Удалить"
     get_code: "Узнать код"
+  send: "Отправить в другой чат"
 
 commands:
   list:
