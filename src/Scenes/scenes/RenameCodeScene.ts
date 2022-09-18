@@ -6,10 +6,10 @@ import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithTex
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { TMessage } from '@sendByBot/Common/types/TMessage';
 import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
 import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
 import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
-import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.RENAME_CODE_SCENE)
 export class RenameCodeScene {

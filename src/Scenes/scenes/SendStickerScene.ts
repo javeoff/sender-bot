@@ -6,11 +6,11 @@ import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithTex
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { TMessage } from '@sendByBot/Common/types/TMessage';
 import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
 import { StickerEntity } from '@sendByBot/Stickers/entities/StickerEntity';
 import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
 import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
-import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.SEND_STICKER_SCENE)
 export class SendStickerScene {
