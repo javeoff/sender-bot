@@ -61,6 +61,7 @@ export class SendPhotoScene {
         {
           reply_markup: this.sendCodeKeyboardService.getKeyboard(
             message.caption,
+            ctx.i18n,
           ),
         },
       );
@@ -126,7 +127,10 @@ export class SendPhotoScene {
         code: message.text,
       }),
       {
-        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(
+          message.text,
+          ctx.i18n,
+        ),
       },
     );
   }

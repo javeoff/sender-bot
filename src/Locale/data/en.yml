@@ -16,6 +16,7 @@ keyboards:
     customize: "Customize ★"
     delete: "Delete"
     get_code: "Show code"
+  send: "Send to another chat"
 
 commands:
   list:
