@@ -20,8 +20,6 @@ export class PagesService {
 
     const hasNext = !!lastItem;
 
-    console.log(items, hasNext, lastItem);
-
     const factory = new RowEntitiesFactory();
 
     factory.addImagesEntities(

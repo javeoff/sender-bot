@@ -9,6 +9,7 @@ import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
 import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
 import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
 import { VideosSetter } from '@sendByBot/Videos/services/VideosSetter';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 
 @Scene(SceneName.RENAME_CODE_SCENE)
 export class RenameCodeScene {
@@ -18,6 +19,7 @@ export class RenameCodeScene {
     private readonly stickersSetter: StickersSetter,
     private readonly imagesSetter: ImagesSetter,
     private readonly videosSetter: VideosSetter,
+    private readonly sendCodeKeyboardService: SendCodeKeyboardService,
   ) {}
 
   @SceneEnter()
@@ -77,10 +79,13 @@ export class RenameCodeScene {
         break;
     }
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_code_rename', {
         code: text,
       }),
+      {
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+      },
     );
   }
 }

@@ -8,6 +8,7 @@ import { ImageEntity } from '@sendByBot/Images/entities/ImageEntity';
 import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
 import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
 import { SceneKeyboardService } from '@sendByBot/InlineKeyboard/services/SceneKeyboardService';
+import { SendCodeKeyboardService } from '@sendByBot/InlineKeyboard/services/SendCodeKeyboardService';
 import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
 import { SceneLocaleService } from '@sendByBot/Scenes/services/SceneLocaleService';
 
@@ -19,6 +20,7 @@ export class SendPhotoScene {
     private readonly imagesSetter: ImagesSetter,
     private readonly imagesGetter: ImagesGetter,
     private readonly sceneKeyboardService: SceneKeyboardService,
+    private readonly sendCodeKeyboardService: SendCodeKeyboardService,
   ) {}
 
   @SceneEnter()
@@ -56,6 +58,11 @@ export class SendPhotoScene {
       await this.imagesSetter.add(image);
       void ctx.reply(
         this.sceneLocaleService.getSuccessSaveMediaMessage(message.caption),
+        {
+          reply_markup: this.sendCodeKeyboardService.getKeyboard(
+            message.caption,
+          ),
+        },
       );
       void ctx.scene.leave();
       return;
@@ -114,10 +121,13 @@ export class SendPhotoScene {
 
     await this.imagesSetter.add(image);
 
-    void ctx.reply(
+    void ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),
+      {
+        reply_markup: this.sendCodeKeyboardService.getKeyboard(message.text),
+      },
     );
   }
 }
