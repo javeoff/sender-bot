@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Ctx } from 'nestjs-telegraf';
 
 import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
+import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
-import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
 import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
@@ -17,11 +17,8 @@ export class NextPageQuery {
     private readonly pagesService: PagesService,
   ) {}
 
+  @Query(CallbackQueryName.NEXT_PAGE)
   public async onNextPage(@Ctx() ctx: TContext): Promise<void> {
-    if (!isQueryWithName(ctx, CallbackQueryName.NEXT_PAGE)) {
-      return;
-    }
-
     const userId = String(ctx.from.id);
 
     void ctx.scene.leave();

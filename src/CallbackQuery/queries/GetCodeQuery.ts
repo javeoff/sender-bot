@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Ctx } from 'nestjs-telegraf';
 
 import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
-import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
@@ -19,11 +19,8 @@ export class GetCodeQuery {
     private readonly videosGetter: VideosGetter,
   ) {}
 
+  @Query(CallbackQueryName.GET_CODE)
   public async onGetCode(@Ctx() ctx: TContext): Promise<void> {
-    if (!isQueryWithName(ctx, CallbackQueryName.GET_CODE)) {
-      return;
-    }
-
     void ctx.scene.leave();
 
     const userId = String(ctx.from.id);

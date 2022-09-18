@@ -11,10 +11,10 @@ export class SceneKeyboardService {
     isExisting: boolean,
   ): InlineKeyboardMarkup {
     const firstRow = [
-      // {
-      //   text: i18n.t('keyboards.scene.customize'),
-      //   callback_data: CallbackQueryName.CUSTOMIZE
-      // }
+      {
+        text: i18n.t('keyboards.scene.customize'),
+        callback_data: CallbackQueryName.CUSTOMIZE,
+      },
     ];
 
     if (isExisting) {

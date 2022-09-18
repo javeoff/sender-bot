@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { Ctx } from 'nestjs-telegraf';
 
 import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
+import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
-import { isQueryWithName } from '@sendByBot/CallbackQuery/guards/isQueryWithName';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { ImagesSetter } from '@sendByBot/Images/services/ImagesSetter';
 import { StickersSetter } from '@sendByBot/Stickers/services/StickersSetter';
@@ -18,10 +18,11 @@ export class DeleteQuery {
     private readonly videosSetter: VideosSetter,
   ) {}
 
+  @Query(CallbackQueryName.DELETE)
   public async onDelete(@Ctx() ctx: TContext): Promise<void> {
-    if (!isQueryWithName(ctx, CallbackQueryName.DELETE)) {
-      return;
-    }
+    // if (!isQueryWithName(ctx, CallbackQueryName.DELETE)) {
+    //   return;
+    // }
 
     void ctx.scene.leave();
 
