@@ -95,7 +95,7 @@ export class SendVideoScene {
 
     const cache = await this.cacheScenesService.get(userId);
 
-    if (!('videoId' in cache)) {
+    if (!cache || !('videoId' in cache)) {
       return;
     }
 

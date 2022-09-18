@@ -75,7 +75,7 @@ export class SendStickerScene {
 
     const cache = await this.cacheScenesService.get(userId);
 
-    if (!('stickerId' in cache)) {
+    if (!cache || !('stickerId' in cache)) {
       return;
     }
 
