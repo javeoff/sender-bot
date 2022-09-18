@@ -3,9 +3,9 @@ welcome_message_description: "Отправь мне любой медиафай�
 
 scenes:
   success_load_media: "Отлично! Отправь код для ${entityName}, чтобы сохранить в базу."
-  success_save_media: "Код успешно сохранен!\nВвод: `@sendbybot ${code}`"
+  success_save_media: "✅ Код успешно сохранен!\nВвод: `@sendbybot ${code}`"
   confirm_code_rename: "Отправь новый код"
-  success_code_rename: "Код успешно изменен\nВвод: `@sendbybot ${code}`"
+  success_code_rename: "✅ Код успешно изменен\nВвод: `@sendbybot ${code}`"
 
 keyboards:
   edit:

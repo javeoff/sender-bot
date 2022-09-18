@@ -1,5 +1,6 @@
 import { Ctx, Hears, Help, Start, Update } from 'nestjs-telegraf';
 
+import { SetBotCommandsService } from '@sendByBot/Commands/services/SetBotCommandsService';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
 import { ErrorCode } from '@sendByBot/SystemError/enums/ErrorCode';
@@ -11,14 +12,17 @@ import { UsersSetter } from '@sendByBot/Users/services/UsersSetter';
 @Update()
 export class AppController {
   public constructor(
-    private readonly usersSetter: UsersSetter,
-    private readonly usersGetter: UsersGetter,
     private readonly systemErrorFactory: SystemErrorFactory,
     private readonly logger: LoggerService,
+    private readonly usersSetter: UsersSetter,
+    private readonly usersGetter: UsersGetter,
+    private readonly setBotCommandsService: SetBotCommandsService,
   ) {}
 
   @Start()
   public async start(@Ctx() ctx: TContext): Promise<void> {
+    this.setBotCommandsService.setCommands(ctx);
+
     await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_title'));
     await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_description'));
 
@@ -39,7 +43,17 @@ export class AppController {
 
   @Help()
   public async help(@Ctx() ctx: TContext): Promise<void> {
-    await ctx.reply('Send me a sticker');
+    await ctx.replyWithVideo(
+      'BAACAgIAAxkBAAIB4GMm2JoBJnfWQtp1SYbM1fEOBkSXAAJ8IgACiBMRSTPe2rTGudq_KQQ',
+      {
+        caption:
+          '📦 <b>SendByBot</b> - Бот, который сохранит стикеры по имени! \n' +
+          'Хватит искать нужный стикер в списке, напиши другу \n' +
+          '@SendByBot [твой тег]\n' +
+          'и выбери файл для отправки.\n',
+        parse_mode: 'HTML',
+      },
+    );
   }
 
   @Hears(['hi'])

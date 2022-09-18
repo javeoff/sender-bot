@@ -13,6 +13,7 @@ import { ConfigName } from '@sendByBot/Config/enums/ConfigName';
 import { ConfigService } from '@sendByBot/Config/services/ConfigService';
 import { EncodingModule } from '@sendByBot/Encoding/EncodingModule';
 import { ErrorModule } from '@sendByBot/Error/ErrorModule';
+import { EventsModule } from '@sendByBot/Events/EventsModule';
 import { ImagesModule } from '@sendByBot/Images/ImagesModule';
 import { InlineKeyboardModule } from '@sendByBot/InlineKeyboard/InlineKeyboardModule';
 import { InlineQueryModule } from '@sendByBot/InlineQuery/InlineQueryModule';
@@ -52,6 +53,7 @@ import { VideosModule } from '@sendByBot/Videos/VideosModule';
     CommandsModule,
     ErrorModule,
     SystemErrorModule,
+    EventsModule,
   ],
   providers: [AppController],
 })

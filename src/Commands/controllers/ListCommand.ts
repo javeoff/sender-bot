@@ -2,6 +2,7 @@ import { Command, Ctx, Sender, Update } from 'nestjs-telegraf';
 
 import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
 import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
+import { SetBotCommandsService } from '@sendByBot/Commands/services/SetBotCommandsService';
 import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
@@ -12,6 +13,7 @@ export class ListCommand {
     private readonly pagesKeyboardService: PagesKeyboardService,
     private readonly cachePagesService: CachePagesService,
     private readonly pagesService: PagesService,
+    private readonly setBotCommandsService: SetBotCommandsService,
   ) {}
 
   @Command('list')
@@ -19,6 +21,7 @@ export class ListCommand {
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
   ): Promise<void> {
+    this.setBotCommandsService.setCommands(ctx);
     const factory = new PagesListFactory(ctx.i18n);
     const { data: rows, hasNext } = await this.pagesService.getPageRowsByUserId(
       userId,
