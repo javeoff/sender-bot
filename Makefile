@@ -3,6 +3,7 @@
 
 run:
 	docker run -d --name $(CONTAINER_NAME) \
+		--restart=on-failure \
 		--network=$(NETWORK_NAME) \
 		$(IMAGE_NAME) \
 		npm start
