@@ -1,8 +1,6 @@
-import { Injectable } from '@nestjs/common';
-import { Ctx } from 'nestjs-telegraf';
+import { Action, Ctx, Update } from 'nestjs-telegraf';
 
 import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallbackQueryService';
-import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 import { RowEntitiesFactory } from '@sendByBot/Common/factories/RowEntitiesFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
@@ -10,7 +8,7 @@ import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
 import { StickersGetter } from '@sendByBot/Stickers/services/StickersGetter';
 import { VideosGetter } from '@sendByBot/Videos/services/VideosGetter';
 
-@Injectable()
+@Update()
 export class GetCodeQuery {
   public constructor(
     private readonly cacheCallbackQueryService: CacheCallbackQueryService,
@@ -19,9 +17,9 @@ export class GetCodeQuery {
     private readonly videosGetter: VideosGetter,
   ) {}
 
-  @Query(CallbackQueryName.GET_CODE)
+  @Action(CallbackQueryName.GET_CODE)
   public async onGetCode(@Ctx() ctx: TContext): Promise<void> {
-    void ctx.scene.leave();
+    await ctx.scene.leave();
 
     const userId = String(ctx.from.id);
     const cache = await this.cacheCallbackQueryService.get(userId);
@@ -37,8 +35,8 @@ export class GetCodeQuery {
       );
       const rowFactory = new RowEntitiesFactory();
 
-      rowFactory.addStickerEntities(stickers);
-      void ctx.reply(
+      await rowFactory.addStickerEntities(stickers);
+      await ctx.reply(
         'Список найденных стикеров:\n' + rowFactory.rows.join('\n'),
       );
       return;
@@ -51,8 +49,8 @@ export class GetCodeQuery {
       );
       const rowFactory = new RowEntitiesFactory();
 
-      rowFactory.addStickerEntities(images);
-      void ctx.reply(
+      await rowFactory.addStickerEntities(images);
+      await ctx.reply(
         'Список найденных изображений:\n' + rowFactory.rows.join('\n'),
       );
       return;
@@ -65,8 +63,8 @@ export class GetCodeQuery {
       );
       const rowFactory = new RowEntitiesFactory();
 
-      rowFactory.addStickerEntities(videos);
-      void ctx.reply('Список найденных видео:\n' + rowFactory.rows.join('\n'));
+      await rowFactory.addStickerEntities(videos);
+      await ctx.reply('Список найденных видео:\n' + rowFactory.rows.join('\n'));
     }
   }
 }

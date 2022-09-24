@@ -11,14 +11,14 @@ export class StickersSetter {
     private readonly stickerRepository: Repository<StickerEntity>,
   ) {}
 
-  public removeByUniqueStickerId(id: string): void {
-    void this.stickerRepository.delete({
+  public async removeByUniqueStickerId(id: string): Promise<void> {
+    await this.stickerRepository.delete({
       unique_sticker_id: id,
     });
   }
 
-  public add(item: StickerEntity): void {
-    void this.stickerRepository.insert(item);
+  public async add(item: StickerEntity): Promise<void> {
+    await this.stickerRepository.insert(item);
   }
 
   public change(

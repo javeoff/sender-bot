@@ -11,14 +11,14 @@ export class VideosSetter {
     private readonly videoRepository: Repository<VideoEntity>,
   ) {}
 
-  public removeByVideoUniqueId(videoId: string): void {
-    void this.videoRepository.delete({
+  public async removeByVideoUniqueId(videoId: string): Promise<void> {
+    await this.videoRepository.delete({
       unique_video_id: videoId,
     });
   }
 
-  public add(item: VideoEntity): void {
-    void this.videoRepository.insert(item);
+  public async add(item: VideoEntity): Promise<void> {
+    await this.videoRepository.insert(item);
   }
 
   public change(

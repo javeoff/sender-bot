@@ -21,7 +21,7 @@ export class ListCommand {
     @Ctx() ctx: TContext,
     @Sender('id') userId: string,
   ): Promise<void> {
-    this.setBotCommandsService.setCommands(ctx);
+    await this.setBotCommandsService.setCommands(ctx);
     const factory = new PagesListFactory(ctx.i18n);
     const { data: rows, hasNext } = await this.pagesService.getPageRowsByUserId(
       userId,
@@ -31,7 +31,7 @@ export class ListCommand {
       reply_markup: this.pagesKeyboardService.getPagesKeyboard(true, !hasNext),
     });
 
-    this.cachePagesService.set(userId, {
+    await this.cachePagesService.set(userId, {
       chatId: String(msg.chat.id),
       messageId: String(msg.message_id),
       pageIndex: 0,

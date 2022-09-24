@@ -41,7 +41,6 @@ export class ListBuilder {
     }
     query += ';';
 
-    console.log(query);
     return this.dataSource.query(query);
   }
 }

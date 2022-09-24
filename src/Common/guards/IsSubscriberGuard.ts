@@ -10,10 +10,8 @@ export class IsSubscribedGuard implements CanActivate {
 
     const sub = await this.getSubscribtion(context);
 
-    console.log('123', sub);
-
     if (!sub) {
-      void context.reply('Вы не подписаны на канал @sendbybot_news');
+      await context.reply('Вы не подписаны на канал @sendbybot_news');
       return false;
     }
 

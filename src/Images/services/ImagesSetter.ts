@@ -11,20 +11,20 @@ export class ImagesSetter {
     private readonly imageRepository: Repository<ImageEntity>,
   ) {}
 
-  public removeByImageId(imageId: string): void {
-    void this.imageRepository.delete({
+  public async removeByImageId(imageId: string): Promise<void> {
+    await this.imageRepository.delete({
       image_id: imageId,
     });
   }
 
-  public removeByImageUniqueId(imageId: string): void {
-    void this.imageRepository.delete({
+  public async removeByImageUniqueId(imageId: string): Promise<void> {
+    await this.imageRepository.delete({
       unique_image_id: imageId,
     });
   }
 
-  public add(item: ImageEntity): void {
-    void this.imageRepository.insert(item);
+  public async add(item: ImageEntity): Promise<void> {
+    await this.imageRepository.insert(item);
   }
 
   public change(

@@ -1,15 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { Ctx } from 'nestjs-telegraf';
+import { Action, Ctx, Update } from 'nestjs-telegraf';
 
 import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
-import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
 import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
 
-@Injectable()
+@Update()
 export class PrevPageQuery {
   public constructor(
     private readonly cachePagesService: CachePagesService,
@@ -17,9 +15,9 @@ export class PrevPageQuery {
     private readonly pagesService: PagesService,
   ) {}
 
-  @Query(CallbackQueryName.PREV_PAGE)
+  @Action(CallbackQueryName.PREV_PAGE)
   public async onPrevPage(@Ctx() ctx: TContext): Promise<void> {
-    void ctx.scene.leave();
+    await ctx.scene.leave();
     const userId = String(ctx.from.id);
 
     const take = 5;
@@ -57,7 +55,7 @@ export class PrevPageQuery {
 
     const hideLeft = newPageIndex - 1 < 0;
 
-    void ctx.telegram.editMessageText(
+    await ctx.telegram.editMessageText(
       cache.chatId,
       Number(cache.messageId),
       undefined,

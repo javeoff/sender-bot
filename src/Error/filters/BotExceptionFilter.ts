@@ -1,5 +1,4 @@
 import { ArgumentsHost, Catch } from '@nestjs/common';
-import { BaseExceptionFilter } from '@nestjs/core';
 
 import { isMessageWithText } from '@sendByBot/Common/typeGuards/isMessageWithText';
 import { TContext } from '@sendByBot/Common/types/TContext';
@@ -8,12 +7,10 @@ import { externalConfigService } from '@sendByBot/Config/services/ConfigService'
 import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
 
 @Catch()
-export class BotExceptionFilter extends BaseExceptionFilter {
-  public constructor(private readonly logger: LoggerService) {
-    super();
-  }
+export class BotExceptionFilter {
+  public constructor(private readonly logger: LoggerService) {}
 
-  public catch(error: Error, host: ArgumentsHost): void {
+  public async catch(error: Error, host: ArgumentsHost): Promise<void> {
     const ctx: TContext = host.getArgs()[0];
 
     const errorMessage =
@@ -27,7 +24,7 @@ export class BotExceptionFilter extends BaseExceptionFilter {
 
     this.logger.error(errorMessage);
 
-    void ctx.tg.sendMessage(
+    await ctx.tg.sendMessage(
       externalConfigService.get(ConfigName.EVENTS_CHANNEL_ID),
       errorMessage,
       {
@@ -35,7 +32,7 @@ export class BotExceptionFilter extends BaseExceptionFilter {
       },
     );
 
-    void ctx.reply(
+    await ctx.reply(
       'Произошла ошибка сервера.\nОбратитесь к администратору: @daniil_jave',
     );
   }

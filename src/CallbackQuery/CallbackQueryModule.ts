@@ -1,7 +1,10 @@
 import { forwardRef, Module } from '@nestjs/common';
 
+import { CustomizeQuery } from './queries/CustomizeQuery';
 import { CacheModule } from '@sendByBot/Cache/CacheModule';
-import { CallbackQueryController } from '@sendByBot/CallbackQuery/CallbackQueryController';
+import { DiscolorQuery } from '@sendByBot/CallbackQuery/queries/customize/DiscolorQuery';
+import { SaveCustomizeQuery } from '@sendByBot/CallbackQuery/queries/customize/SaveCustomizeQuery';
+import { WorseQuery } from '@sendByBot/CallbackQuery/queries/customize/WorseQuery';
 import { DeleteQuery } from '@sendByBot/CallbackQuery/queries/DeleteQuery';
 import { GetCodeQuery } from '@sendByBot/CallbackQuery/queries/GetCodeQuery';
 import { ListQuery } from '@sendByBot/CallbackQuery/queries/ListQuery';
@@ -25,7 +28,10 @@ import { VideosModule } from '@sendByBot/Videos/VideosModule';
     NextPageQuery,
     PrevPageQuery,
     PagesService,
-    CallbackQueryController,
+    CustomizeQuery,
+    WorseQuery,
+    DiscolorQuery,
+    SaveCustomizeQuery,
   ],
   exports: [PagesService],
   imports: [

@@ -7,4 +7,7 @@ export enum CallbackQueryName {
   GET_CODE = 'get_code',
   NEXT_PAGE = 'next_page',
   PREV_PAGE = 'prev_page',
+  WORSE = 'worse',
+  DISCOLOR = 'discolor',
+  SAVE_CUSTOMIZE = 'save_cusomize',
 }

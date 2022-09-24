@@ -1,20 +1,25 @@
-interface IVideoScenesCache {
+interface IBaseScenesCache {
+  messageId?: string;
+  chatId?: string;
+}
+
+interface IVideoScenesCache extends IBaseScenesCache {
   videoId: string;
   thumbId: string;
   uniqueVideoId: string;
 }
 
-interface IImageScenesCache {
+interface IImageScenesCache extends IBaseScenesCache {
   photoId: string;
   uniquePhotoId: string;
 }
 
-interface IStickerScenesCache {
+interface IStickerScenesCache extends IBaseScenesCache {
   stickerId: string;
   uniqueStickerId: string;
 }
 
-interface IRenameCodeScenesCache {
+interface IRenameCodeScenesCache extends IBaseScenesCache {
   test: string;
 }
 

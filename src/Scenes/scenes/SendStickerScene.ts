@@ -40,16 +40,7 @@ export class SendStickerScene {
       sticker.file_unique_id,
     );
 
-    await this.cacheScenesService.set(
-      userId,
-      {
-        stickerId: sticker.file_id,
-        uniqueStickerId: message.sticker.file_unique_id,
-      },
-      { ttl: 10_000 },
-    );
-
-    void ctx.reply(
+    const msg = await ctx.reply(
       ctx.i18n.t('scenes.success_load_media', {
         entityName: 'стикера',
       }),
@@ -60,6 +51,17 @@ export class SendStickerScene {
         ),
       },
     );
+
+    await this.cacheScenesService.set(
+      userId,
+      {
+        stickerId: sticker.file_id,
+        uniqueStickerId: message.sticker.file_unique_id,
+        messageId: String(msg.message_id),
+        chatId: String(msg.chat.id),
+      },
+      { ttl: 10_000 },
+    );
   }
 
   @On('text')
@@ -68,7 +70,7 @@ export class SendStickerScene {
     @Message() message: TMessage,
     @Sender('id') userId: string,
   ): Promise<void> {
-    void ctx.scene.leave();
+    await ctx.scene.leave();
     if (!isMessageWithText(message)) {
       return;
     }
@@ -88,7 +90,7 @@ export class SendStickerScene {
 
     await this.stickersSetter.add(sticker);
 
-    void ctx.replyWithMarkdown(
+    await ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),

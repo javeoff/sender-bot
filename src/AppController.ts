@@ -1,8 +1,6 @@
-import { UseGuards } from '@nestjs/common';
 import { Ctx, Hears, Help, Start, Update } from 'nestjs-telegraf';
 
 import { SetBotCommandsService } from '@sendByBot/Commands/services/SetBotCommandsService';
-import { IsSubscribedGuard } from '@sendByBot/Common/guards/IsSubscriberGuard';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { LoggerService } from '@sendByBot/Logger/services/LoggerService';
 import { ErrorCode } from '@sendByBot/SystemError/enums/ErrorCode';
@@ -10,12 +8,6 @@ import { SystemErrorFactory } from '@sendByBot/SystemError/factories/SystemError
 import { UserEntity } from '@sendByBot/Users/entities/UserEntity';
 import { UsersGetter } from '@sendByBot/Users/services/UsersGetter';
 import { UsersSetter } from '@sendByBot/Users/services/UsersSetter';
-
-function ForSubscriber(): MethodDecorator {
-  return (target, propertyKey, descriptor) => {
-    console.log(target, propertyKey, descriptor);
-  };
-}
 
 @Update()
 export class AppController {
@@ -29,11 +21,7 @@ export class AppController {
 
   @Start()
   public async start(@Ctx() ctx: TContext): Promise<void> {
-    // console.log(ctx.from.id);
-    // console.log(await ctx.tg.getChat('-1001706567829,'));
-    // console.log(await ctx.tg.getChatMember('-1001706567829', ctx.from.id));
-    // console.log(await this.isSubscribed(ctx, '-1001706567829'));
-    this.setBotCommandsService.setCommands(ctx);
+    await this.setBotCommandsService.setCommands(ctx);
 
     await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_title'));
     await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_description'));
@@ -61,11 +49,6 @@ export class AppController {
         '@SendByBot [твой тег]\n' +
         'и выбери файл для отправки.\n',
     );
-  }
-
-  @Hears(['hi'])
-  public async hears(@Ctx() ctx: TContext): Promise<void> {
-    await ctx.reply('Hey there');
   }
 
   @Hears(['log'])

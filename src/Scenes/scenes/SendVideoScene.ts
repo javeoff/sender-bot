@@ -50,26 +50,16 @@ export class SendVideoScene {
       video.thumb_id = thumb.file_id;
 
       await this.videosSetter.add(video);
-      void ctx.reply(
+      await ctx.reply(
         this.sceneLocaleService.getSuccessSaveMediaMessage(message.caption),
       );
-      void ctx.scene.leave();
+      await ctx.scene.leave();
       return;
     }
 
-    await this.cacheScenesService.set(
-      userId,
-      {
-        videoId: fileId,
-        uniqueVideoId: uniqueFileId,
-        thumbId: thumb.file_id,
-      },
-      { ttl: 10_000 },
-    );
-
     const isExisting = await this.videosGetter.hasByUniqueId(userId, fileId);
 
-    void ctx.reply(
+    const msg = await ctx.reply(
       ctx.i18n.t('scenes.success_load_media', {
         entityName: 'видео',
       }),
@@ -80,6 +70,18 @@ export class SendVideoScene {
         ),
       },
     );
+
+    await this.cacheScenesService.set(
+      userId,
+      {
+        videoId: fileId,
+        uniqueVideoId: uniqueFileId,
+        thumbId: thumb.file_id,
+        messageId: String(msg.message_id),
+        chatId: String(msg.chat.id),
+      },
+      { ttl: 10_000 },
+    );
   }
 
   @On('text')
@@ -88,7 +90,7 @@ export class SendVideoScene {
     @Message() message: TMessage,
     @Sender('id') userId: string,
   ): Promise<void> {
-    void ctx.scene.leave();
+    await ctx.scene.leave();
     if (!isMessageWithText(message)) {
       return;
     }
@@ -109,7 +111,7 @@ export class SendVideoScene {
 
     await this.videosSetter.add(video);
 
-    void ctx.replyWithMarkdown(
+    await ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_save_media', {
         code: message.text,
       }),

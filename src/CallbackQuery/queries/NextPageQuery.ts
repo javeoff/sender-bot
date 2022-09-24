@@ -1,15 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { Ctx } from 'nestjs-telegraf';
+import { Action, Ctx, Update } from 'nestjs-telegraf';
 
 import { CachePagesService } from '@sendByBot/Cache/services/CachePagesService';
-import { Query } from '@sendByBot/CallbackQuery/decorators/Query';
 import { CallbackQueryName } from '@sendByBot/CallbackQuery/enums/CallbackQueryName';
 import { PagesService } from '@sendByBot/CallbackQuery/services/PagesService';
 import { PagesListFactory } from '@sendByBot/Common/factories/PagesListFactory';
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { PagesKeyboardService } from '@sendByBot/InlineKeyboard/services/PagesKeyboardService';
 
-@Injectable()
+@Update()
 export class NextPageQuery {
   public constructor(
     private readonly cachePagesService: CachePagesService,
@@ -17,11 +15,11 @@ export class NextPageQuery {
     private readonly pagesService: PagesService,
   ) {}
 
-  @Query(CallbackQueryName.NEXT_PAGE)
+  @Action(CallbackQueryName.NEXT_PAGE)
   public async onNextPage(@Ctx() ctx: TContext): Promise<void> {
     const userId = String(ctx.from.id);
 
-    void ctx.scene.leave();
+    await ctx.scene.leave();
 
     const take = 5;
 
@@ -52,9 +50,7 @@ export class NextPageQuery {
       return;
     }
 
-    console.log('hasNext', hasNext);
-
-    void ctx.telegram.editMessageText(
+    await ctx.telegram.editMessageText(
       cache.chatId,
       Number(cache.messageId),
       undefined,

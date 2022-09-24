@@ -23,8 +23,8 @@ export class RenameCodeScene {
   ) {}
 
   @SceneEnter()
-  public onSceneEnter(@Ctx() ctx: TContext): void {
-    void ctx.reply(ctx.i18n.t('scenes.confirm_code_rename'));
+  public async onSceneEnter(@Ctx() ctx: TContext): Promise<void> {
+    await ctx.reply(ctx.i18n.t('scenes.confirm_code_rename'));
   }
 
   @On('text')
@@ -32,7 +32,7 @@ export class RenameCodeScene {
     @Ctx() ctx: TContext,
     @Message() message: TMessage,
   ): Promise<void> {
-    void ctx.scene.leave();
+    await ctx.scene.leave();
     if (!isMessageWithText(message)) {
       return;
     }
@@ -79,7 +79,7 @@ export class RenameCodeScene {
         break;
     }
 
-    void ctx.replyWithMarkdown(
+    await ctx.replyWithMarkdown(
       ctx.i18n.t('scenes.success_code_rename', {
         code: text,
       }),

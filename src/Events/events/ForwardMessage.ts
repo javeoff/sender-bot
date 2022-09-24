@@ -20,7 +20,6 @@ export class ForwardMessage {
     @Sender('id') userId: string,
     @Message() message: TMessage,
   ): Promise<void> {
-    console.log('1111');
     await this.videosController.onVideo(ctx, userId, message);
     await this.stickerController.onSticker(ctx, userId, message);
     await this.imagesController.onPhoto(ctx, userId, message);

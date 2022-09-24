@@ -46,16 +46,17 @@ export class EditCommand {
         }
         const stickerId = String(sticker.sticker_id);
 
-        this.cacheCallbackQueryService.set(
+        await this.cacheCallbackQueryService.set(
           userId,
           {
             variant: 'sticker',
             id: stickerId,
             uniqueStickerId: sticker.unique_sticker_id,
+            stickerId: sticker.sticker_id,
           },
           { ttl: 10_000 },
         );
-        void ctx.replyWithSticker(stickerId, {
+        await ctx.replyWithSticker(stickerId, {
           reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n),
         });
         break;
@@ -69,16 +70,17 @@ export class EditCommand {
         }
         const videoId = String(video.video_id);
 
-        this.cacheCallbackQueryService.set(
+        await this.cacheCallbackQueryService.set(
           userId,
           {
             variant: 'video',
             id: videoId,
             uniqueVideoId: video.unique_video_id,
+            videoId: video.video_id,
           },
           { ttl: 10_000 },
         );
-        void ctx.replyWithVideo(videoId, {
+        await ctx.replyWithVideo(videoId, {
           reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n),
         });
         break;
@@ -92,16 +94,17 @@ export class EditCommand {
         }
         const photoId = String(image.image_id);
 
-        this.cacheCallbackQueryService.set(
+        await this.cacheCallbackQueryService.set(
           userId,
           {
             variant: 'image',
             id: photoId,
             uniqueImageId: image.unique_image_id,
+            imageId: image.image_id,
           },
           { ttl: 10_000 },
         );
-        void ctx.replyWithPhoto(photoId, {
+        await ctx.replyWithPhoto(photoId, {
           reply_markup: this.editKeyboardService.getEditKeyboard(ctx.i18n),
         });
         break;

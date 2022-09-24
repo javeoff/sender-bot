@@ -6,7 +6,7 @@ import { TContext } from '@sendByBot/Common/types/TContext';
 
 @Injectable()
 export class SetBotCommandsService {
-  public setCommands(@Ctx() ctx: TContext): void {
+  public async setCommands(@Ctx() ctx: TContext): Promise<void> {
     const commands = [];
 
     commands.push({
@@ -24,6 +24,6 @@ export class SetBotCommandsService {
       description: 'List',
     });
 
-    void ctx.setMyCommands(commands);
+    await ctx.setMyCommands(commands);
   }
 }

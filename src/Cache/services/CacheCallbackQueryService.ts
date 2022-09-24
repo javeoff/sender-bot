@@ -15,12 +15,12 @@ export class CacheCallbackQueryService {
     return this.cacheManager.get<ICallbackQueryCache>(this.prefix + userId);
   }
 
-  public set(
+  public async set(
     userId: string,
     data: ICallbackQueryCache,
     options?: CachingConfig,
-  ): void {
-    void this.cacheManager.set<ICallbackQueryCache>(
+  ): Promise<void> {
+    await this.cacheManager.set<ICallbackQueryCache>(
       this.prefix + userId,
       data,
       options,

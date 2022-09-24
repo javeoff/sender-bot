@@ -49,11 +49,12 @@ export class StickersController {
       {
         variant: 'sticker',
         id: message.sticker.file_id,
+        stickerId: message.sticker.file_id,
         uniqueStickerId: message.sticker.file_unique_id,
       },
       { ttl: 10_000 },
     );
 
-    void ctx.scene.enter(SceneName.SEND_STICKER_SCENE);
+    await ctx.scene.enter(SceneName.SEND_STICKER_SCENE);
   }
 }

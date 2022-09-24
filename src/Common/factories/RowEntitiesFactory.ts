@@ -6,13 +6,15 @@ interface IPartialEntity {
 export class RowEntitiesFactory {
   private entitiesRows: string[] = [];
 
-  public addStickerEntities(newEntities: IPartialEntity[]): void {
+  public async addStickerEntities(
+    newEntities: IPartialEntity[],
+  ): Promise<void> {
     newEntities.map((entity) => {
       this.entitiesRows.push(this.createRow(entity, 'edit_sticker'));
     });
   }
 
-  public addImagesEntities(newEntities: IPartialEntity[]): void {
+  public async addImagesEntities(newEntities: IPartialEntity[]): Promise<void> {
     newEntities.map((entity) => {
       this.entitiesRows.push(this.createRow(entity, 'edit_image'));
     });

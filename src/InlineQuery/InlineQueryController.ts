@@ -27,19 +27,19 @@ export class InlineQueryController {
 
     results.push(...images, ...stickers, ...videos);
 
-    void ctx.answerInlineQuery(results, {
+    await ctx.answerInlineQuery(results, {
       cache_time: 10,
     });
 
-    this.makeAnalytics(ctx, images, stickers, videos);
+    await this.makeAnalytics(ctx, images, stickers, videos);
   }
 
-  private makeAnalytics(
+  private async makeAnalytics(
     ctx: TContext,
     images: unknown[],
     stickers: unknown[],
     videos: unknown[],
-  ): void {
+  ): Promise<void> {
     if (!ctx.inlineQuery.query) {
       return;
     }
@@ -57,13 +57,13 @@ export class InlineQueryController {
     };
 
     if (images.length > 0) {
-      void this.readActionsService.add(getAnalyticsRequest('image'));
+      await this.readActionsService.add(getAnalyticsRequest('image'));
     }
     if (videos.length > 0) {
-      void this.readActionsService.add(getAnalyticsRequest('video'));
+      await this.readActionsService.add(getAnalyticsRequest('video'));
     }
     if (stickers.length > 0) {
-      void this.readActionsService.add(getAnalyticsRequest('sticker'));
+      await this.readActionsService.add(getAnalyticsRequest('sticker'));
     }
   }
 }

@@ -11,8 +11,8 @@ export class ReadActionsService {
     private readonly analyticsServer: ClickHouseClient,
   ) {}
 
-  public add(action: IReadAction): void {
-    void this.analyticsServer
+  public async add(action: IReadAction): Promise<void> {
+    await this.analyticsServer
       .insertPromise('read_actions', [
         {
           user_id: action.userId,

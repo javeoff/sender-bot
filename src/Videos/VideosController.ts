@@ -62,9 +62,10 @@ export class VideosController {
         variant: 'video',
         id: video.file_id,
         uniqueVideoId: video.file_unique_id,
+        videoId: video.file_id,
       },
       { ttl: 10_000 },
     );
-    void ctx.scene.enter(SceneName.SEND_VIDEO_SCENE);
+    await ctx.scene.enter(SceneName.SEND_VIDEO_SCENE);
   }
 }

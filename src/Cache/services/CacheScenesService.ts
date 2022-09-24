@@ -15,12 +15,12 @@ export class CacheScenesService {
     return this.cacheManager.get<IScenesCache>(this.prefix + userId);
   }
 
-  public set(
+  public async set(
     userId: string,
     data: IScenesCache,
     options?: CachingConfig,
-  ): void {
-    void this.cacheManager.set<IScenesCache>(
+  ): Promise<void> {
+    await this.cacheManager.set<IScenesCache>(
       this.prefix + userId,
       data,
       options,

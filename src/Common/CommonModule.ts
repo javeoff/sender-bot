@@ -1,8 +1,8 @@
 import { Global, Module } from '@nestjs/common';
 
-import { ListBuilder } from '@sendByBot/Common/builders/ListBuilder';
 import { IsSubscribedGuard } from '@sendByBot/Common/guards/IsSubscriberGuard';
 import { ormProvider } from '@sendByBot/Common/providers/ormProvider';
+import { ListBuilder } from '@sendByBot/Common/utils/builders/ListBuilder';
 import { ConfigModule } from '@sendByBot/Config/ConfigModule';
 
 @Global()

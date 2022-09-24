@@ -4,6 +4,7 @@ import { CacheCallbackQueryService } from '@sendByBot/Cache/services/CacheCallba
 import { TContext } from '@sendByBot/Common/types/TContext';
 import { TInlineQueries } from '@sendByBot/Common/types/TInlineQueries';
 import { TMessage } from '@sendByBot/Common/types/TMessage';
+import { getPhotoFromMessage } from '@sendByBot/Common/utils/getPhotoFromMessage';
 import { EncodingService } from '@sendByBot/Encoding/services/EncodingService';
 import { ImagesGetter } from '@sendByBot/Images/services/ImagesGetter';
 import { SceneName } from '@sendByBot/Scenes/enums/SceneName';
@@ -44,18 +45,20 @@ export class ImagesController {
       return;
     }
 
-    const photo = message.photo[0];
+    const { file_id: fileId, file_unique_id: uniqueFileId } =
+      getPhotoFromMessage(message);
 
     await this.cacheCallbackQueryService.set(
       userId,
       {
         variant: 'image',
-        id: photo.file_id,
-        uniqueImageId: photo.file_unique_id,
+        id: fileId,
+        uniqueImageId: uniqueFileId,
+        imageId: fileId,
       },
       { ttl: 10_000 },
     );
 
-    void ctx.scene.enter(SceneName.SEND_PHOTO_SCENE);
+    await ctx.scene.enter(SceneName.SEND_PHOTO_SCENE);
   }
 }

@@ -15,8 +15,12 @@ export class CachePagesService {
     return this.cacheManager.get<IPagesCache>(this.prefix + userId);
   }
 
-  public set(userId: string, data: IPagesCache, options?: CachingConfig): void {
-    void this.cacheManager.set<IPagesCache>(this.prefix + userId, data, {
+  public async set(
+    userId: string,
+    data: IPagesCache,
+    options?: CachingConfig,
+  ): Promise<void> {
+    await this.cacheManager.set<IPagesCache>(this.prefix + userId, data, {
       ...options,
       ttl: 100,
     });
