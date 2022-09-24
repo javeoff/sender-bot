@@ -1,7 +1,7 @@
 {
   "ts-node": {
     "transpileOnly": true,
-    "require": [ "typescript-transform-paths/register" ],
+    "require": ["typescript-transform-paths/register"],
     "files": true
   },
   "compilerOptions": {
@@ -11,13 +11,13 @@
     "target": "esnext",
     "module": "commonjs",
     "paths": {
-      "@sendByBot/*": ["./src/*"]
+      "@sendByBot/*": ["src/*"]
     },
     "plugins": [
       {
         "transform": "typescript-transform-paths",
         "useRootDirs": true
-      },
+      }
     ],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -28,5 +28,5 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "declaration": true
-  },
+  }
 }

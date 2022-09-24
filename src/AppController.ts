@@ -1,4 +1,5 @@
-import { Ctx, Hears, Help, Start, Update } from 'nestjs-telegraf';
+import { Ctx, Hears, Help, InjectBot, Start, Update } from 'nestjs-telegraf';
+import { Context, Telegraf } from 'telegraf';
 
 import { SetBotCommandsService } from '@sendByBot/Commands/services/SetBotCommandsService';
 import { TContext } from '@sendByBot/Common/types/TContext';
@@ -17,10 +18,21 @@ export class AppController {
     private readonly usersSetter: UsersSetter,
     private readonly usersGetter: UsersGetter,
     private readonly setBotCommandsService: SetBotCommandsService,
-  ) {}
+    @InjectBot()
+    private readonly bot: Telegraf<Context>,
+  ) {
+    if (!('startWebhook' in bot)) {
+      return;
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    bot.startWebhook(`/secret`, null, 3_001);
+  }
 
   @Start()
   public async start(@Ctx() ctx: TContext): Promise<void> {
+    console.log('123 start');
     await this.setBotCommandsService.setCommands(ctx);
 
     await ctx.replyWithMarkdown(ctx.i18n.t('welcome_message_title'));
@@ -55,6 +67,7 @@ export class AppController {
   public async log(@Ctx() ctx: TContext): Promise<void> {
     this.logger.info('test log command');
     await ctx.reply('test log');
+    console.log(ctx.from.id);
   }
 
   @Hears(['photoid'])
